@@ -1,0 +1,364 @@
+
+/* ==========================================================================
+   Sacred Sankalpam - Responsive Styles
+   File: css/responsive.css
+
+   Traditional Luxury Theme
+   Supports: Desktop, Tablet, Mobile and Small Phones
+
+   Breakpoints:
+   Compact Header/Nav : 1120px
+   Tablet              : 1024px
+   Mobile              : 768px
+   Small Phones        : 420px
+   Extra Small Phones  : 360px
+
+   Dashboard-specific responsive rules are maintained in dashboard.css.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. Compact Header and Navigation
+   ========================================================================== */
+
+@media (max-width: 1120px) {
+
+  .site-header {
+    position: relative;
+    z-index: 100;
+  }
+
+  .header-inner {
+    position: relative;
+  }
+
+  .mobile-menu-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 110;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    max-height: calc(100vh - var(--header-height, 82px));
+    max-height: calc(100dvh - var(--header-height, 82px));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background-color: var(--bg-surface, #FFFFFF);
+    border: 1px solid var(--border-color, #E2D8C7);
+    border-top: 2px solid var(--color-secondary, #D69B37);
+    border-radius: 0 0 12px 12px;
+    box-shadow: var(--shadow-md, 0 10px 26px rgba(30, 26, 25, 0.09));
+    padding: 10px 20px 16px;
+  }
+
+  [data-theme="dark"] .nav-menu {
+    background-color: #302628;
+    border-color: #4D3B3D;
+    border-top-color: #E6B85E;
+  }
+
+  .nav-menu.is-open {
+    display: flex;
+  }
+
+  .nav-link {
+    display: block;
+    width: 100%;
+    padding: 13px 4px;
+    border-bottom: 1px solid var(--border-color, #E2D8C7);
+  }
+
+  .nav-link:last-child {
+    border-bottom: 0;
+  }
+
+  .nav-link::after {
+    display: none;
+  }
+}
+
+
+/* ==========================================================================
+   2. Tablet and Smaller Laptops
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+
+  .grid-4,
+  .grid-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid-center-last > :last-child:nth-child(3n + 1) {
+    grid-column: auto;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .section {
+    padding-inline: 20px;
+  }
+
+  .container {
+    width: min(100%, var(--container-max, 1280px));
+    padding-inline: 16px;
+  }
+
+  img,
+  video,
+  iframe {
+    max-width: 100%;
+  }
+}
+
+
+/* ==========================================================================
+   3. Mobile Devices
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+  .section {
+    padding-block: 44px;
+    padding-inline: 14px;
+  }
+
+  .container {
+    width: min(100%, var(--container-max, 1280px));
+    padding-inline: 12px;
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .footer-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .header-inner {
+    gap: 12px;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .header-actions .btn-sm {
+    min-height: 38px;
+    padding-inline: 10px;
+    font-size: 0.8rem;
+  }
+
+  .brand-tagline {
+    display: none;
+  }
+
+  .page-graphic-box,
+  .page-graphic-img {
+    max-height: 210px;
+    height: 210px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-content {
+    padding-block: 56px;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 7vw, 3rem);
+    line-height: 1.15;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .hero-actions {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .card,
+  .service-card,
+  .pooja-card,
+  .priest-card {
+    height: auto;
+  }
+
+  .form-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Public website tables only.
+     Dashboard tables are handled by dashboard.css. */
+
+  body:not(.dashboard-page) table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+
+/* ==========================================================================
+   4. Very Small Phones
+   ========================================================================== */
+
+@media (max-width: 420px) {
+
+  .header-inner {
+    gap: 6px;
+  }
+
+  .brand-mark {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+  }
+
+  .brand-name {
+    font-size: 0.92rem;
+  }
+
+  .header-actions {
+    gap: 5px;
+  }
+
+  .header-actions .btn-sm {
+    min-height: 34px;
+    padding-inline: 8px;
+    font-size: 0.74rem;
+  }
+
+  .icon-toggle-btn,
+  .dir-toggle-btn {
+    height: 34px;
+  }
+
+  .icon-toggle-btn {
+    width: 34px;
+  }
+
+  .dir-toggle-btn {
+    padding: 0 8px;
+    font-size: 0.82rem;
+  }
+
+  .section {
+    padding-block: 36px;
+    padding-inline: 10px;
+  }
+
+  .container {
+    width: min(100%, var(--container-max, 1280px));
+    padding-inline: 10px;
+  }
+
+  .nav-menu {
+    padding-inline: 14px;
+  }
+
+  .hero-content {
+    padding-block: 42px;
+  }
+
+  .hero-title {
+    font-size: clamp(1.75rem, 9vw, 2.35rem);
+  }
+
+  .hero-actions .btn,
+  .btn {
+    max-width: 100%;
+  }
+}
+
+
+/* ==========================================================================
+   5. Extra Small Phones
+   ========================================================================== */
+
+@media (max-width: 360px) {
+
+  .brand-name {
+    font-size: 0.85rem;
+  }
+
+  .mobile-menu-btn {
+    width: 34px;
+    height: 34px;
+  }
+
+  .icon-toggle-btn {
+    width: 30px;
+    height: 30px;
+  }
+
+  .dir-toggle-btn {
+    height: 30px;
+    padding: 0 6px;
+    font-size: 0.76rem;
+  }
+
+  .header-actions .btn-sm {
+    min-height: 30px;
+    padding-inline: 7px;
+    font-size: 0.72rem;
+  }
+}
+
+
+/* ==========================================================================
+   6. RTL Layout Alignment
+   ========================================================================== */
+
+[dir="rtl"] .nav-link {
+  text-align: right;
+}
+
+[dir="rtl"] .nav-menu {
+  text-align: right;
+}
+
+
+/* ==========================================================================
+   7. Reduced Motion Accessibility
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

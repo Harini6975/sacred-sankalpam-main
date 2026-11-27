@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create a Devotee or Priest account on Sacred Sankalpam for traditional pooja and ceremony booking coordination.">
+  <meta name="theme-color" content="#762333">
+  <title>Sacred Sankalpam | Sign Up</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <style>
+    :root {
+      --su-maroon: #762333;
+      --su-deep: #421923;
+      --su-gold: #C69A4A;
+      --su-cream: #FBF8F1;
+      --su-paper: #FFFDF8;
+      --su-ink: #29211E;
+      --su-serif: "Cormorant Garamond", Georgia, serif;
+      --su-sans: "Inter", Arial, sans-serif;
+    }
+
+    body.auth-page {
+      font-family: var(--su-sans);
+      background-color: var(--su-cream);
+      color: var(--su-ink);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .auth-outside-controls {
+      position: fixed;
+      top: 20px;
+      inset-inline-end: 20px;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .signup-wrapper {
+      width: 100%;
+      padding: 36px 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .auth-card.signup-card-single {
+      max-width: 540px;
+      width: 100%;
+      margin: 0 auto;
+      animation: suCardReveal 0.78s cubic-bezier(0.22, 0.78, 0.25, 1) both;
+    }
+
+    .auth-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .auth-banner-preview {
+      width: 100%;
+      height: 130px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1.5px solid var(--su-gold);
+      margin-bottom: 18px;
+      display: block;
+    }
+
+    [data-theme="dark"] .auth-banner-preview {
+      border-color: #E6B85E;
+    }
+
+    .social-auth-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .social-provider-btn {
+      width: 100%;
+      min-height: 44px;
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border-strong);
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 0.94rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .social-provider-btn:hover {
+      border-color: var(--color-secondary);
+      background-color: var(--bg-subtle);
+    }
+
+    [data-theme="dark"] .social-provider-btn {
+      background-color: #3A2B2B;
+      border-color: #6B5042;
+      color: #F7EFE6;
+    }
+
+    [data-theme="dark"] .social-provider-btn:hover {
+      border-color: #E6B85E;
+      background-color: #463434;
+    }
+
+    .apple-signin-btn {
+      border-color: #1E1A19;
+      background-color: #1E1A19;
+      color: #FFFFFF;
+    }
+
+    .apple-signin-btn:hover {
+      background-color: #302628;
+      border-color: var(--color-secondary);
+    }
+
+    [data-theme="dark"] .apple-signin-btn {
+      background-color: #FAF7F2;
+      border-color: #E6B85E;
+      color: #1E1A19;
+    }
+
+    [data-theme="dark"] .apple-signin-btn:hover {
+      background-color: #F2ECE1;
+    }
+
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      text-decoration: none;
+    }
+
+    .footer-brand .brand-mark {
+      width: 46px;
+      height: 46px;
+      flex-shrink: 0;
+    }
+
+    @keyframes suCardReveal {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .auth-outside-controls {
+        top: 12px;
+        inset-inline-end: 12px;
+      }
+    }
+  </style>
+</head>
+<body class="auth-page">
+  <div class="auth-outside-controls" aria-label="Appearance and layout controls">
+    <button type="button" class="icon-toggle-btn" id="themeToggleBtn" aria-label="Toggle light and dark mode" title="Toggle light and dark mode">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
+
+    <button type="button" class="dir-toggle-btn" id="dirToggleBtn" aria-label="Switch layout to Right-to-Left (RTL)" title="Switch layout to Right-to-Left (RTL)">⇄</button>
+  </div>
+
+  <main class="main-content signup-wrapper">
+    <section class="auth-card signup-card-single" id="su-card">
+      <div class="auth-top-bar">
+        <a href="index.html" class="brand-logo" aria-label="Sacred Sankalpam Home">
+          <svg class="brand-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <circle cx="24" cy="24" r="21" stroke="#8B2635" stroke-width="2.5" fill="#FAF7F2"/>
+            <polygon points="24,8 37,24 24,40 11,24" stroke="#D69B37" stroke-width="2.2" fill="none"/>
+            <circle cx="24" cy="24" r="5" fill="#8B2635"/>
+          </svg>
+          <span class="brand-text">
+            <span class="brand-name">Sacred Sankalpam</span>
+            <span class="brand-tagline">Pooja &amp; Priest Booking</span>
+          </span>
+        </a>
+      </div>
+
+      <img
+        src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwQDAwQEBAQFBQQFBwsHBwYGBw4KCggLEA4RERAOEA8SFBoWEhMYEw8QFh8XGBsbHR0dERYgIh8cIhocHRz/2wBDAQUFBQcGBw0HBw0cEhASHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBz/wAARCADwAyADASIAAhEBAxEB/8QAHQABAAMBAQEBAQEAAAAAAAAAAAECBwYIBQQJA//EAFMQAAECAwMIAwsIBgcHBQAAAAABEQIDBgQFFwcSVWaVpNLiFSFWExQxN0F2g5OzwtMIIjZGV4WStBgnUVNhpRYjMjQ1QrElcXSBstHhM3WEkfH/xAAaAQEAAwEBAQAAAAAAAAAAAAAAAgMEBQEG/8QAOREAAQMBBAYJAwQCAwEBAAAAAAECEQMEFFLREhVTkZKhBRMhIjRRcYGxMXLwIzIzQWHBorLSgsL/2gAMAwEAAhEDEQA/APGIB9G4rivCpb1s913XZ++LfaM7ucrPhgzs2FYl64lRE6kVfCQc5GornLCIdVGysIfOBomBdf6A3yRxjAuv9Ab5I4zLrCybVvEmZZd6mFdxnYNEwLr/AEBvkjjGBdf6A3yRxjWFk2reJMxd6mFdxnYNEwLr/QG+SOMYF1/oDfJHGNYWTat4kzF3qYV3Gdg0TAuv9Ab5I4xgXX+gN8kcY1hZNq3iTMXephXcZ2DRMC6/0BvkjjGBdf6A3yRxjWFk2reJMxd6mFdxnYNEwLr/AEBvkjjGBdf6A3yRxjWFk2reJMxd6mFdxnYNEwLr/QG+SOMYF1/oDfJHGNYWTat4kzF3qYV3Gdg0TAuv9Ab5I4xgXX+gN8kcY1hZNq3iTMXephXcZ2DRMC6/0BvkjjGBdf6A3yRxjWFk2reJMxd6mFdxnYNEwLr/AEBvkjjGBdf6A3yRxjWFk2reJMxd6mFdxnYNEwLr/QG+SOMYF1/oDfJHGNYWTat4kzF3qYV3Gdg0TAuv9Ab5I4xgXX+gN8kcY1hZNq3iTMXephXcZ2DRMC6/0BvkjjGBdf6A3yRxjWFk2reJMxd6mFdxnYNEwLr/AEBvkjjGBdf6A3yRxjWFk2reJMxd6mFdxnYNEwLr/QG+SOMYF1/oDfJHGNYWTat4kzF3qYV3Gdg0TAuv9Ab5I4xgXX+gN8kcY1hZNq3iTMXephXcZ2DRMC6/0BvkjjGBdf6A3yRxjWFk2reJMxd6mFdxnYNEwLr/AEBvkjjGBdf6A3yRxjWFk2reJMxd6mFdxnYNEwLr/QG+SOMYF1/oDfJHGNYWTat4kzF3qYV3Gdg0TAuv9Ab5I4xgXX+gN8kcY1hZNq3iTMXephXcZ2DRMC6/0BvkjjGBdf6A3yRxjWFk2reJMxd6mFdxnYNEwLr/AEBvkjjGBdf6A3yRxjWFk2reJMxd6mFdxnYNEwLr/QG+SOMYF1/oDfJHGNYWTat4kzF3qYV3Gdg0TAuv9Ab5I4xgXX+gN8kcY1hZNq3iTMXephXcZ2DRMC6/0BvkjjGBdf6A3yRxjWFk2reJMxd6mFdxnYNEwLr/AEBvkjjGBdf6A3yRxjWFk2reJMxd6mFdxnYNEwLr/QG+SOMYF1/oDfJHGNYWTat4kzF3qYV3Gdg0TAuv9Ab5I4xgXX+gN8kcY1hZNq3iTMXephXcZ2DRMC6/0BvkjjGBdf6A3yRxjWFk2reJMxd6mFdxnYNEwLr/AEBvkjjGBdf6A3yRxjWFk2reJMxd6mFdxnYNEwLr/QG+SOMYF1/oDfJHGNYWTat4kzF3qYV3Gdg0TAuv9Ab5I4xgXX+gN8kcY1hZNq3iTMXephXcZ2DRMC6/0BvkjjGBdf6A3yRxjWFk2reJMxd6mFdxnYNEwLr/AEBvkjjGBdf6A3yRxjWFk2reJMxd6mFdxnYNEwLr/QG+SOMYF1/oDfJHGNYWTat4kzF3qYV3Gdg0TAuv9Ab5I4xgXX+gN8kcY1hZNq3iTMXephXcZ2DRMC6/0BvkjjGBdf6A3yRxjWFk2reJMxd6mFdxnYNEwLr/AEBvkjjGBdf6A3yRxjWFk2reJMxd6mFdxnYNEwLr/QG+SOMYF1/oDfJHGNYWTat4kzF3qYV3Gdg0TAuv9Ab5I4xgXX+gN8kcY1hZNq3iTMXephXcZ2DRMC6/0BvkjjGBdf6A3yRxjWFk2reJMxd6mFdxnYNEwLr/AEBvkjjGBdf6A3yRxjWFk2reJMxd6mFdxnYNEwLr/QG+SOMYF1/oDfJHGNYWTat4kzF3qYV3Gdg0TAuv9Ab5I4xgXX+gN8kcY1hZNq3iTMXephXcZ2DRMC6/0BvkjjGBdf6A3yRxjWFk2reJMxd6mFdxnYNEwLr/AEBvkjjGBdf6A3yRxjWFk2reJMxd6mFdxnYNEwLr/QG+SOMYF1/oDfJHGNYWTat4kzF3qYV3Gdg0TAuv9Ab5I4xgXX+gN8kcY1hZNq3iTMXephXcZ2D7NTUnfFHW+XYb6snetqmSknQwd0gjeBVVEV4VVPDCv/0fGNLHte1HMWUXyK1aqLCljQ8hnjTuH0/sJhnxoeQzxp3D6f2EwzdIeEq/a74UuoJ+q31QzoFgayqCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACDQcrH1H82LD75nhouVj6j+bNh98zwyWDw7ff5UtrJ31LGhZDfGlcPp/YTDPTQ8hvjSuH0/sJh50h4Sr9rvhT2in6jfVDPAAbCuAAAIAAAgAACAAAIAAAgAACAAAIAAAgAACAAAIAAAgAACAAAIAAAgAACAAAIAAAgAACAAAIAAAgAACAAAIAAAgAACAAAIAAAgAACAAAIAAAgAACAAAIAAAgAACAAAIAAAgAACAAAIAAAgAACAAAIAAAgAACAAAIAAAgAACAAAIAAAg0LKv9SPNmxe+Z6aHlX+pHmzYvfM8Mdg8O33+VLKyd9S7GhZD0/WjcPp/YTDPjQch/jRuH0/sJg6Q8JV+13wpKin6jfVDPWDEg2FUEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEGg5Vk+hHmzYvfM9Y0LKt9SfNqxe+Z8Y7B4dvv8qW1k76ljQciHjQuL0/sJhn7Gg5EU/WhcXp/YTDzpDwlX7XfCntFP1G+qGeglgxsK4IBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIB0NC3ZZb5ramrutsrutitt5WazzpecsOfBHNhhiR0VFR0VetFc32+bgyZXTe94Xfh53XvS0TJHdOmrTDnZsSwuzqzsZ6toSm7QRqqv17I/wBqhfQstSvKU0+h8P5OuRW5coFhvC/qihmWiw2W096yLJKnrLSZEkt41mMiRMndJaw5sSdaRP1eH4HyhMk935Mr7uybc0cxLpvaCbFBJnTc+OTMgiRYoUXNT5iQzJaQusUXVE6+B9Xo2uaYyfd+/wBHKK7x7+zO7/7Umzc/Mzs3+3CrNnxeBvCflq+p6Pry8pV41BQ3fttlSUs8EzpadLaWkUUSI0CInhii62frOY19qS1LUVF0PLs8vKY+pr1bX0Y0e31Q8nn0LiuifUF93bdFmjlwWm8LTLssqKaqpBDFHEkKLEqIqs69bIp6A7wyZfZx/O7SO8MmX2cfzu0m9bU6Oym7/j/6I6rtGHmho18/JVo6ZS82xXUltlX3KgmRSLfPtSvNmNFmQzUSFYMx1hfMgSJoU63d/FJ7avPLdZb5u22XdbaZ7rYrbJjs86X3+sOfLjhWGJHSBFR0VetFczXvDJl9nH87tJhsNS00kdeEV0/TtTMk/o2uv0bzQ83g9Id4ZMvs4/ndpHeGTL7OP53aTfel2bv+P/ohqu0YeaHm8HpDvDJl9nH87tJl+Wqm7rpLKbflzXNZe9btsvcO5Se6RR5udIlxL86JVVfnRKvWvlJU7Tpv0FaqLE9sf1Hkq+ZRXslSgiLUSJM/BLBjSZ4IBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgIIBLBgINAyq/UnzasXvmfGhZVU+hPm1YvfM+Yx2Dw7ff5Usqp31LmgZEvGfcXp/YTDP2NAyJJ+s+4vT+wmDpDwlX7XfCkqKfqN9UM/AYMbCuAAwYCAAwYCAAwYCAAwYCAAwYCAAwYCAAwYCAAwYCAAwYCAAwYCAAwYCAAwYCAAwYCAAwYCAAwYCAAwYCAAwYCAAwYCAAwYCAAx9Wmqet1V3/AHdct3S8+2W+dDJgdIlhhfwxRZqKqQwo8SqysiKvkPHKjUlRB9TJn4yKO/8AeLH7aA2esfpdf/8Ax9o9pEfru/5M190XftI39JvWz3l3peVjm26zSpEcMUr+vlIqy1R8+GF4lWKJIGhhdvCifkrH6XX/AP8AH2j2kRzG2inXraVJZSP9na6IaqOdJ8UAGk7gAAAAAAAAAOb+Ub45ql/+N+WlHSHwflJWWfIyxX9MmyZkuXaILPMlRRwqiTIUkS4c6FV8KZ0MSOnlhVPIVt8Q30d8tOL0x9Ge/wDoycBgxvOHAAYMBAAYMBAAYMBAAYMBAAYMBAAYMBAAYMBAAYMBAAYMBAAYMBAAYMBAAYMBAAYMBAAYMBAAYMBAAYMBAAYMBAAYMBAAYMBAAYMBBoGVT6lebVi98z80DKon0K82rF75n7GOweHb7/KllVO+pdjv8iafrOuP0/sJhwJ3+RPxnXH6f2EwdIeEq/a74U9pJ+o31Qz9gxINhXBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBrlO5HLkvKjbjqK+K06I6X7v3Kz9Fx2hu5TFgX50Mf8ABF60Tw+VjqqJoekqIqu6r/smU3Pm2CckcUvoKandIFRYY4HWJWzoFihdlVHdOtD/AAi8TeTX7y/MnOHMRKlZrtJ6wquSIb9JVPLyOxZrDSqU2vWZPUt4ZXaStMiCCyVL3rNSdKjimd4zZmdBDMhijgZYP88CRQP4UznTrQ4S8peSu9bxtlvnVNecM61To50aQSY0hSKKJVVnk+DrMVBnpdGspfse5N2Rsp2RtNZY5U/PQ2Do3JN2nvX1UXwB0bkm7T3r6qL4Bj4Lrou0dvTIt6p2NeWRsHRuSbtPevqovgDo3JN2nvX1UXwDHwLou0dvTIdU7GvLI2Do3JN2nvX1UXwB0bkm7T3r6qL4Bj4F0XaO3pkOqdjXlkbB0bkm7T3r6qL4A6NyTdp719VF8Ax8C6LtHb0yHVOxryyNg6NyTdp719VF8A57KjcFJZTarmX3Pyjd6ykkwWez2XoSbM7jBCjqmeiw5zxxRxOqP85vAiHAANsqtcj0qOlPRf8ARVVsjasablX89D9eDtE/af8AyGdxlpuRCnbRdF+Wy6K+6QtN1XfPvCKzdDzJWfDLhdUzoo2R1ZPL4fAp+I6+iP8AC6+817f/ANMJKqtWm3SSou5uRkrdH0mU1ck9h5zYMSDpnGghgxIAghgxIAghgxIAghgxIAghgxIAghgxIAghgxIAghgxIAghgxIAghgxIAghgxIAghgxIAghgxIAghgxIAghgxIAghgxIAghgxIAghgxIAghgxIAg77Kmn0K827F75wDGgZUvqX5t2L3zgDHYPDt9/lSyqnfUsd9kU8Ztx+n9hMODO+yK+My4/T+wmDpDwlX7XfCkqSd9vqhn4LA2FcFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEFQf72azT7baZNms0mZPtM+NJcuVKhWKOOJVZIUROtVVVZEQ3m+Pkp1DddMTbxlXvY7ZetngjmzbvkSZipFDCkStKjbOjjVoUSFYIeuJUfq66K1ppUVRKjon6HqNkrH4m8mv3l+ZObOkmeJzJt95fmTmzNQ/av3O/wCyn0Vi/gb+f2AAXGoAAAAAAAAAAAAAAAHX0P8A4XX3mvb/APphOQOvof8AwyvvNe3/APTCUWn+Nfb5M9q/hcedgabknyMXplUmWufKtku7rqscaS5tqmSoo1iiWGJc2XD1QxKjQ5yLEjJGi9bsfLyn5ML0yX31KsFvmy7VZrVBFNs1rkwRQwTIUiVGV0ZI0RIVWFFibPh61c1JaaS1epR3e8j5vR/s4YFgXnkFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEFQWAEHeZUvqX5t2L3zgTQMqP1L83LF75wJjsHh2+/wAqWVU7yljvci3jMuP0/sJhwbHe5Fk/WZcfp/YTB0h4Sr9rvhT2knfb6nAglgxrIQQCWDAQQCWDAQQCWDAQQCWDAQQCWDAQQCWDAQQCWDAQQCWDAQQCWDAQQCWDAQQCWDAQQCWDAQQCWDAQQCWDAQQCWDAQQCWDAQQCWDAQQaZROS+6ako6dUt81X0JZYLwW74Yej47TnRpLhmIrwxIqOir5P8AL4eszRjaKb8QUzzpX8ohmtTnI1EYsSqJ+TJbRpo96NUm7MndHXPeNjvGxZVO5WyxzoJ8mZ/R+dFmRwRJFCrLEqKyonUvUejbzyy0darutkixVP3nbJsmOCTae8J0zuMawqkMeYsDRMrKy9SseSgYq9gbXVFqvVY9MjppYaafRVNrsErJjBR1P09eNYWy0dC98Zlos1imye6d1mLGrwxS42bqTw/+P8+icj3au9/VRfAMYBJLGqfSo7l/fb5FzKOgmi1yx+f4Nn6JyPdq739VF8AdE5Hu1d7+qi+AYwD26LtHb0yJdW7Gv57Gz9E5Hu1d7+qi+AOicj3au9/VRfAMYAui7R29Mh1bsa/nsbP0Tke7V3v6qL4A6JyPdq739VF8AxgC6LtHb0yHVuxr+exs/ROR7tXe/qovgDonI92rvf1UXwDGALou0dvTIdW7Gv57Gz9E5Hu1d7+qi+AOicj3au9/VRfAMYAui7R29Mh1bsa/nsbP0Tke7V3v6qL4A6JyPdq739VF8AxgC6LtHb0yHVuxr+exs/ROR7tXe/qovgH7bHHksuq779s931Zb4Z17XbPu5ZlossyZDLhmo2dmpKhdUVE6nMLB4tjlIWo7lkeOpK5IVy/nsbzkiv2jsll3Xld0dd9J2O1ToZ8uX0TOkdxjzc2NXaJYs5Eg6l6kzOrwqfKyuzaOyrXjds+PKD0fY7BJigl2boadN+fFE8cef81etIYEZXRM3q8KmNgilgalXr0eul59mRRcacRKn1r+ySXFYqOvyobkrTpfojuHdbP0XHZ37rMSCH50Uf8AFV6kXweRzJzcbu8TuUz7s/MqYexssznLpteswv8AjyRf6RPM5topJTqK1pAJYMaimCASwYCCASwYCCASwYCCASwYCCASwYCCASwYCCASwYCCASwYCCASwYCCASwYCCASwYCCASwYCCASwYCCASwYCCASwYCCASwYCCASwYCDvMqH1M83LH75wR32VBPoZ5uWP3zgmMlg8O33+VJ1E7ylmO9yLp+su5PT+wmHBneZGPGXcnp/YTDzpDwlX7XfCntNO+nqcEwYkGwhBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDBiQBBDGz051ZA5nnSv5RDGTZqc8QczzpX8ohltX0b6oX2ZP1WnLgAmdwAAAAAAAHf5J8nFpyh1HIsnc4u80iaKJVzYY4kR8zO8KJmvErOrI3hVCFSolNukpF7202q530Q/DQ2TKoK/tsEm7LHN7irKs+KBc3Nzs1VTyKy+FXREbrVHQ9IU18kOwS7KsV9W7PnxwQLmvFFmxMucjQrCidbeWP8A3+VfQVI0jd9G3VLsNhlwoqQwpMmpCkKxqiMiMnghTwJCnUifxdV++QbRfUSaqqn+EWOadv8Ao+XtXTFV7lSl2JzPNN8/JCuadZYIbut3c56Roqq8cHzWXyxLM8reRP8Af5F861/kbqXJ/MzrbZJs6yq7ToJa9SJCkSqrOjI/hRVRG62VWP6QHzr7uSxVDd0yw26XnyY+tFTqigi8kUK+RU/8K6KqBaDmJNJV9FWU3rKp+dhGz9MVqbv1F0kP5XA13Llklm5Pb6inWaXnWCd8+JZSJmQIqtDEiO8KRK6N4EVGRWWEyIlSqJUbKdn+lPqaVVtViPYvYoABYTAAAAAAOwu3xO5TPu38ypiDG33Z4nspn3b+ZUxEhZv3VPu//LTjWxP1lIYMSDUZYIYMSAIIYMSAIIYMSAIIYMSAIIYMSAIIYMSAIIYMSAIIYMSAIIYMSAIIYMSAIIYMSAIIYMSAIIYMSAIIYMSAIIYMSAIIYMSAIIYMSAIO8ynp9DfNyx++cEx3uU/6m+blj984Mx2Dw7ff5UnUTvKWO8yMeMq5PT+wmHCnd5GfGTcnp/YTB0h4Sr9rvhSVNO+nqcECwNZCCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCp0+Tuk/6cVrc1wrN7lKtk7+tjSLNiSVDCscearL87NhiZ0Z2fqNGu27aJp/JvR973vR/TN43z353Wb0lOs7dynLCnVCqp4FROpE8Hlcm7awoC6Lxsl4WLJr3K2WOdBPkzOnJ8WZHDEkUKsqKisqJ1L1GJ9pe5rkpsX+0ns+qdnn5lraD3JKIaHlL+TrS92ULbrwuGXaLLed0WSKesybaYoobUkCJFGsxFRfnZsMbJBmJnRdfV4Mzp3xBzPOlfyiHc1D8oO7arue03Re9F983dac3usrpSKDOzYkiTrhloqdcKL1L5D5Vy5XKUuC547nsWTmyrdkdoW1LZ7TeC2iHuqwpDn/ANZLiZc1ET/9U59FLW2no1Wq5UWfqn09ZLqdF7Ho6PoZkDVsaqW+y65vxSvgDGqlvsuub8Ur4Bs6+vsl3pmb+udh5oZSDVsaqW+y65vxSvgDGqlvsuub8Ur4A6+vsl3pmOudh5oZSDVsaqW+y65vxSvgDGqlvsuub8Ur4A6+vsl3pmOudh5oZZKlTJ82CVKgimTZkSQwwQI6xKvgRE8qn9A/k+5PpdFUZInTZcKW62Q50Ueb1t5VfNRWVfB+2GGX+w830XXF0V3f9mua6snV02K2TVSKG1S1krFKV0SFUeVD1rEsKOiozv5D3NZbLKsVlkWaRBmSJEEMuCF1VoURkR16/AgoufWq99saPovavp5JO84vTFpdoJSiJP8AYAHQPnQAADh8rFFSK4o23WGZJ7pPlwRRys2FFjXq60h+aqu3WiJ/mhh/YfzgvO7p90XhabDaYc2fZ41gi6lRF/YqOidSp1ovlRUP6rni/K1UN0ZNartVgvCgbsvOCdMjjk2mfFKz8xFTNgVVlxxK0CwK6r/mbyGCu51KojmNnS7I+nanr/idx3+hrS5ulS+v9nm0GrY1Ut9l1zfilfAGNVLfZdc34pXwDzr6+yXemZ3eudh5oZSDVsaqW+y65vxSvgDGqlvsuub8Ur4A6+vsl3pmOudh5oZSDVsaqW+y65vxSvgDGqlvsuub8Ur4A6+vsl3pmOudh5oczdnieymfdv5lTEz0fbss1MXhc9uuiZk4sUq7rfmd8SrLbe9+65kWdC6y5UK9So/h/b+05Tp/Jv8AZj/PrT/2FCpVYrldTXtWfq3yRPP/AAYa1KpUerkQxsGydP5N/sx/n1p/7H1rpsNAVddVVy7FQvRlsu25bVeEm09LT5zRy4UzfmqyeGJF63Tq8Bc61K1JdTVE/wDn/wBFLrO9qSqGCgsDWUwVBYAQVBYAQVBYAQVBYAQVBYAQVBYAQVBYAQVBYAQVBYAQVBYAQVBYAQVBYAQVBYAQVBYAQVBYAQVBYAQd1lP+pvm7Y/fODO9ynfU7zdsfvnCGSweHb7/Kk6id4ljvMjSfrJuT03sZhwrHd5G0/WRcvpvYzB0h4Sr9rvhT2mnfQ4JgxZgxrIwVYMWYMBBVgxZgwEFWDFmDAQVYMWYMBBVgxZgwEFWDFmDAQVYMWYMBBVgxZgwEFWDFmDAQVYMWYMBBVgxZgwEFWDFmDAQVYMWYMBBVgxZgwEFWDFmDAQVYMWYMBBr9QeJ/Jj95/mUOFO7qDxQZMfvP8whwhjs/7V+53/ZTp2f+NAAC8uAAAAAAAAAN8+SfctnvPKCtomxzYY7PmZqQKiIv9qZ1un7ZMP8AyVf+Xvg/mDk7yiT8ns+2z7NZpsyfaMzNmSrQsmKXmpEisqIq9aR/wNA/Sev393eW1o+Ex6danUeraekiqnbKeSea+cnHt9gqWippNXsPfwPAP6T1+/u7y2tHwj9J6/f3d5bWj4SV5r7Fd7czFqer5nv4HgH9J6/f3d5bWj4R+k9fv7u8trR8IvNfYrvbmNT1fM9/HjX5ZVy2eTed23lDHNWfMWB4VVM350MUK+R/BIh8vlX+DcX+k9fv7u8trR8JxuULKxa8oV3yLNbLNPSbJmwzEnTrWs5WRIkzeuFGT56r4SDqlaq5s01SFmZTM1WLo6rZ6qPVewzsAG07YAAAAAAAAAO/yX/3evvNW3/6QHAHf5L/AO7195q2/wD0gKLV/Ev5/ZVW/YpjLBizBjYcuCrBizBgIKsGLMGAgqwYswYCCrBizBgIKsGLMGAgqwYswYCCrBizBgIKsGLMGAgqwYswYCCrBizBgIKsGLMGAgqwYswYCCrBizBgIKsGLMGAgqwYswYCCrBizBgIO6ymp9DvN2x++cGx3uU1Pod5u2P3zhGMlg8O33+VJVE7xZju8jifrIuX03sYzhTusjnjHuX03sYx0h4Sr9rvhSVNO8hwjBiQayEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEEMGJAEGu1D4ocmP3n+YQ4Q7uovFDkx+8/zCHCGOz/tX7nf9lOlZ/wCNAAC8uAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABoGS7+7195rW//AEgM/NAyXf8AoV95rW//AEgKLV/Ev5/ZVW/YpjjBiQbDmQQwYkAQQwYkAQQwYkAQQwYkAQQwYkAQQwYkAQQwYkAQQwYkAQQwYkAQQwYkAQQwYkAQQwYkAQQwYkAQQwYkAQQwYkAQQwYkAQd1lMT6H+b1j984Rju8pn1P83rH75wpksHh2+/ypN6d4sdzkd8Y9y+m9jGcQdzke8Y1y+m9jGOkPCVftd8KesTvIcICwNZGCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACCoLACDcLJdFgq7JbQ1jl1VTd3Wu7O/u7yLyvCGTMTuk94fmsq+CF+tupUPm4Wyu3tC7XThMhBkSzvbOi/slV+nmslraz2pCGvYWyu3tC7XThGFsrt7Qu104TIQe9TVx8kJXioa9hbK7e0LtdOEYWyu3tC7XThMhA6mrj5ILxUNewtldvaF2unCMLZXb2hdrpwmQgdTVx8kF4qGvYWyu3tC7XThGFsrt7Qu104TIQOpq4+SC8VDXsLZXb2hdrpwjC2V29oXa6cJkIHU1cfJBeKhr2Fsrt7Qu104RhbK7e0LtdOEyEDqauPkgvFQ17C2V29oXa6cIwtldvaF2unCZCB1NXHyQXioa9hbK7e0LtdOEYWyu3tC7XThMhA6mrj5ILxUNewtldvaF2unCMLZXb2hdrpwmQgdTVx8kF4qGvYWyu3tC7XThGFsrt7Qu104TIQOpq4+SC8VDXsLZXb2hdrpwjC2V29oXa6cJkIHU1cfJBeKhr2Fsrt7Qu104RhbK7e0LtdOEyEDqauPkgvFQ17C2V29oXa6cJ96nqeu+jLqrG1WqsaTti2y4LZY5Miw3nDMmxzIoUWFEhVEd81U6ut1TqMDBF1mqPTRc/s9CLqz3JClQWBsKoKgsAIKgsAIKgsAIKgsAIKgsAIKgsAIKgsAIKgsAIKgsAIKgsAIKgsAIKgsAIKgsAIKgsAIKgsAIKgsAIO3yl/U/zesfvnDHd5S/qh5vWP3zhjJYPDt9/lST07xY+rTd/2mlr6st7WOXJjtNmzs2GcirAudCsKuiKi+CJfKfKBoexr2qxySihOztO4xJ1QpLZvMMSdUKS2bzHDgzXGz4ea5ktJx3GJOqFJbN5hiTqhSWzeY4cC42fDzXMaTjuMSdUKS2bzDEnVCktm8xw4Fxs+HmuY0nHcYk6oUls3mGJOqFJbN5jhwLjZ8PNcxpOO4xJ1QpLZvMMSdUKS2bzHDgXGz4ea5jScdxiTqhSWzeYYk6oUls3mOHAuNnw81zGk47jEnVCktm8wxJ1QpLZvMcOBcbPh5rmNJx3GJOqFJbN5hiTqhSWzeY4cC42fDzXMaTjuMSdUKS2bzDEnVCktm8xw4Fxs+HmuY0nHcYk6oUls3mGJOqFJbN5jhwLjZ8PNcxpOO4xJ1QpLZvMMSdUKS2bzHDgXGz4ea5jScdxiTqhSWzeYYk6oUls3mOHAuNnw81zGk47jEnVCktm8wxJ1QpLZvMcOBcbPh5rmNJx3GJOqFJbN5hiTqhSWzeY4cC42fDzXMaTjuMSdUKS2bzDEnVCktm8xw4Fxs+HmuY0nHcYk6oUls3mGJOqFJbN5jhwLjZ8PNcxpOO4xJ1QpLZvMMSdUKS2bzHDgXGz4ea5jScdxiTqhSWzeYYk6oUls3mOHAuNnw81zGk47jEnVCktm8wxJ1QpLZvMcOBcbPh5rmNJx3GJOqFJbN5hiTqhSWzeY4cC42fDzXMaTjuMSdUKS2bzDEnVCktm8xw4Fxs+HmuY0nHcYk6oUls3mGJOqFJbN5jhwLjZ8PNcxpOO4xJ1QpLZvMMSdUKS2bzHDgXGz4ea5jScdxiTqhSWzeYYk6oUls3mOHAuNnw81zGk47jEnVCktm8wxJ1QpLZvMcOBcbPh5rmNJx3GJOqFJbN5hiTqhSWzeY4cC42fDzXMaTjuMSdUKS2bzDEnVCktm8xw4Fxs+HmuY0nHcYk6oUls3mGJOqFJbN5jhwLjZ8PNcxpOO4xJ1QpLZvMMSdUKS2bzHDgXGz4ea5jScdxiTqhSWzeYYk6oUls3mOHAuNnw81zGk47jEnVCktm8wxJ1QpLZvMcOBcbPh5rmNJx3GJOqFJbN5hiTqhSWzeY4cC42fDzXMaTjuMSdUKS2bzDEnVCktm8xw4Fxs+HmuY0nHcYk6oUls3mGJOqFJbN5jhwLjZ8PNcxpOO4xJ1QpLZvMMSdUKS2bzHDgXGz4ea5jScdxiTqhSWzeYYk6oUls3mOHAuNnw81zGk47jEnVCktm8wxJ1QpLZvMcOBcbPh5rmNJx3GJOqFJbN5hiTqhSWzeY4cC42fDzXMaTjuMSdUKS2bzDEnVCktm8xw4Fxs+HmuY0nHcYk6oUls3mGJOqFJbN5jhwLjZ8PNcxpOO4xJ1QpLZvMMSdUKS2bzHDgXGz4ea5jScdxiTqhSWzeYYk6oUls3mOHAuNnw81zGk47jEnVCktm8wxJ1QpLZvMcOBcbPh5rmNJx3GJOqFJbN5hiTqhSWzeY4cC42fDzXMaTjuMSdUKS2bzDEnVCktm8xw4Fxs+HmuY0nHcYk6oUls3mGJOqFJbN5jhwLjZ8PNcxpOO4xJ1QpLZvMMSdUKS2bzHDgXGz4ea5jScdxiTqhSWzeYYk6oUls3mOHAuNnw81zGk4+5VNUWmrLZZrTabLZLN3tZ4bLLlWSWsEuGCFVVERFVW/tN1dTIh8MA0U6bKbUYxIRCKyvap//9k="
+        alt="Traditional South Indian temple gopuram entrance in maroon and antique gold"
+        class="auth-banner-preview"
+      >
+
+      <h1 class="auth-heading">Create an Account</h1>
+      <p class="auth-subtitle">Register as a Devotee or Priest in this frontend prototype.</p>
+
+      <div id="signupAlert" class="auth-alert" role="alert"></div>
+
+      <form id="signupForm" novalidate>
+        <div class="form-group">
+          <label for="signupRole" class="form-label">Account Role</label>
+          <select id="signupRole" class="form-control">
+            <option value="devotee">Devotee</option>
+            <option value="priest">Priest</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="signupName" class="form-label">Full Name</label>
+          <input type="text" id="signupName" class="form-control" autocomplete="name" required>
+          <span class="form-error" id="errSignupName"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="signupEmail" class="form-label">Email Address</label>
+          <input type="email" id="signupEmail" class="form-control" autocomplete="email" required>
+          <span class="form-error" id="errSignupEmail"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="signupPassword" class="form-label">Password</label>
+          <div class="password-field-wrap">
+            <input type="password" id="signupPassword" class="form-control" autocomplete="new-password" required>
+            <button type="button" class="password-eye-btn" id="toggleSignupPass" aria-label="Show or hide password">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+          <span class="form-error" id="errSignupPass"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="signupConfirmPassword" class="form-label">Confirm Password</label>
+          <div class="password-field-wrap">
+            <input type="password" id="signupConfirmPassword" class="form-control" autocomplete="new-password" required>
+            <button type="button" class="password-eye-btn" id="toggleSignupConfirm" aria-label="Show or hide confirm password">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+          <span class="form-error" id="errSignupConfirm"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+      </form>
+
+      <div class="auth-divider">
+        <span>or continue with</span>
+      </div>
+
+      <div class="social-auth-stack">
+        <button type="button" class="google-signin-btn" id="googleSignupBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.5-1.14 2.77-2.4 3.62v3.01h3.88c2.27-2.09 3.54-5.17 3.54-8.87z"/>
+            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.01c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.11-6.72-4.96H1.26v3.1C3.23 21.3 7.28 24 12 24z"/>
+            <path fill="#FBBC05" d="M5.28 14.28c-.24-.72-.38-1.49-.38-2.28s.14-1.56.38-2.28V6.62H1.26A11.98 11.98 0 0 0 0 12c0 1.94.46 3.77 1.26 5.38l4.02-3.1z"/>
+            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.28 0 3.23 2.7 1.26 6.62l4.02 3.1c.95-2.85 3.6-4.97 6.72-4.97z"/>
+          </svg>
+          <span>Continue with Google (Prototype)</span>
+        </button>
+
+        <button type="button" class="social-provider-btn apple-signin-btn" id="appleSignupBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+          </svg>
+          <span>Continue with Apple (Prototype)</span>
+        </button>
+
+        <button type="button" class="social-provider-btn" id="facebookSignupBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="#1877F2" d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/>
+          </svg>
+          <span>Continue with Facebook (Prototype)</span>
+        </button>
+
+        <button type="button" class="social-provider-btn" id="instagramSignupBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+            <defs>
+              <linearGradient id="igSignupGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#FD5"/>
+                <stop offset="50%" stop-color="#FF543E"/>
+                <stop offset="100%" stop-color="#C837AB"/>
+              </linearGradient>
+            </defs>
+            <rect width="24" height="24" rx="6" fill="url(#igSignupGrad)"/>
+            <circle cx="12" cy="12" r="4.5" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+            <circle cx="17.5" cy="6.5" r="1.2" fill="#FFFFFF"/>
+          </svg>
+          <span>Continue with Instagram (Prototype)</span>
+        </button>
+      </div>
+
+      <p class="auth-switch-text">
+        <span>Already have an account?</span>
+        <a href="login.html">Login</a>
+      </p>
+
+      <p class="auth-security-note">
+        Prototype note: Frontend state only; no real authentication or production role security.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer" style="margin-top:auto;">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="footer-brand brand-logo" aria-label="Sacred Sankalpam Home">
+            <svg class="brand-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <circle cx="24" cy="24" r="21" stroke="#C69A4A" stroke-width="2.2" fill="#FBF8F1"/>
+              <polygon points="24,7 38,24 24,41 10,24" stroke="#762333" stroke-width="2.2" fill="none"/>
+              <path d="M24 14 C18 20 18 28 24 34 C30 28 30 20 24 14Z" fill="#C69A4A"/>
+              <circle cx="24" cy="24" r="3" fill="#762333"/>
+            </svg>
+            <span class="brand-text">
+              <span class="brand-name">Sacred Sankalpam</span>
+              <span class="brand-tagline">Pooja &amp; Priest Booking</span>
+            </span>
+          </a>
+          <p style="font-size:0.9rem;">
+            A traditional pooja and priest booking platform with a clear, English-only interface.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="home-premium.html">Premium Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="priests.html">Priests</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Portals</h3>
+          <ul class="footer-links">
+            <li><a href="devotee-dashboard.html">Devotee Dashboard</a></li>
+            <li><a href="priest-dashboard.html">Priest Dashboard</a></li>
+            <li><a href="admin-dashboard.html">Admin Dashboard</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Contact</h3>
+          <ul class="footer-links">
+            <li><a href="contact.html">Contact Support</a></li>
+            <li><span>support@sacredsankalpam.example</span></li>
+            <li><span>Mon – Sat: 7:00 AM – 8:00 PM IST</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Sacred Sankalpam. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/theme.js"></script>
+  <script src="js/direction.js"></script>
+  <script src="js/section-motion.js"></script>
+  <script>
+    (function () {
+      document.documentElement.setAttribute("lang", "en");
+
+      const form = document.getElementById("signupForm");
+      const roleEl = document.getElementById("signupRole");
+      const nameEl = document.getElementById("signupName");
+      const emailEl = document.getElementById("signupEmail");
+      const passEl = document.getElementById("signupPassword");
+      const confirmEl = document.getElementById("signupConfirmPassword");
+
+      const errName = document.getElementById("errSignupName");
+      const errEmail = document.getElementById("errSignupEmail");
+      const errPass = document.getElementById("errSignupPass");
+      const errConfirm = document.getElementById("errSignupConfirm");
+      const alertBox = document.getElementById("signupAlert");
+
+      function showProviderNotice(providerName) {
+        alertBox.className = "auth-alert badge-info";
+        alertBox.style.display = "block";
+        alertBox.textContent = providerName + " sign-up is simulated in this frontend prototype.";
+      }
+
+      document.getElementById("toggleSignupPass").addEventListener("click", function () {
+        passEl.type = passEl.type === "password" ? "text" : "password";
+      });
+
+      document.getElementById("toggleSignupConfirm").addEventListener("click", function () {
+        confirmEl.type = confirmEl.type === "password" ? "text" : "password";
+      });
+
+      document.getElementById("googleSignupBtn").addEventListener("click", function () {
+        showProviderNotice("Google");
+      });
+
+      document.getElementById("appleSignupBtn").addEventListener("click", function () {
+        showProviderNotice("Apple");
+      });
+
+      document.getElementById("facebookSignupBtn").addEventListener("click", function () {
+        showProviderNotice("Facebook");
+      });
+
+      document.getElementById("instagramSignupBtn").addEventListener("click", function () {
+        showProviderNotice("Instagram");
+      });
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        errName.textContent = "";
+        errEmail.textContent = "";
+        errPass.textContent = "";
+        errConfirm.textContent = "";
+        alertBox.style.display = "none";
+
+        const nameVal = nameEl.value.trim();
+        const emailVal = emailEl.value.trim();
+        const passVal = passEl.value;
+        const confirmVal = confirmEl.value;
+        let isValid = true;
+
+        if (!nameVal) {
+          errName.textContent = "Please enter your full name.";
+          isValid = false;
+        }
+        if (!emailVal || !emailVal.includes("@") || !emailVal.includes(".")) {
+          errEmail.textContent = "Please enter a valid email address.";
+          isValid = false;
+        }
+        if (!passVal || passVal.length < 6) {
+          errPass.textContent = "Password must be at least 6 characters.";
+          isValid = false;
+        }
+        if (passVal !== confirmVal) {
+          errConfirm.textContent = "Passwords do not match.";
+          isValid = false;
+        }
+
+        if (!isValid) {
+          return;
+        }
+
+        try {
+          window.localStorage.setItem("sankalpam_proto_registered_user", JSON.stringify({
+            name: nameVal,
+            email: emailVal,
+            role: roleEl.value === "priest" ? "priest" : "devotee"
+          }));
+        } catch (err) {}
+
+        alertBox.className = "auth-alert badge-success";
+        alertBox.style.display = "block";
+        alertBox.textContent = "Account registered in frontend prototype storage. You can now open Login.";
+        form.reset();
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1448 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sacred Sankalpam | Pooja & Priest Booking</title>
+  <meta name="description" content="Explore traditional Hindu pooja services, priest profiles, ceremony details and booking information with Sacred Sankalpam.">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    :root {
+      --ss-maroon: #762638;
+      --ss-dark-maroon: #4d1725;
+      --ss-gold: #c79a43;
+      --ss-light-gold: #ead5a7;
+      --ss-cream: #fbf7ef;
+      --ss-text: #352a28;
+      --ss-muted: #766b64;
+      --ss-white: #fffdf9;
+      --ss-footer: #35151e;
+    }
+
+    body {
+      background: var(--ss-cream);
+      color: var(--ss-text);
+    }
+
+    /* HEADER */
+    .site-header {
+      background: var(--ss-footer) !important;
+      border-bottom: 2px solid var(--ss-gold) !important;
+      color: #f5ead8 !important;
+      box-shadow: 0 4px 15px rgba(0,0,0,.16);
+    }
+
+    .site-header .brand-name,
+    .site-header .brand-tagline,
+    .site-header .nav-link,
+    .site-header .header-actions button {
+      color: #f3d28f !important;
+    }
+
+    .site-header .nav-link:hover,
+    .site-header .nav-link.active {
+      color: #ffffff !important;
+    }
+
+    .site-header .nav-link.active::after {
+      background: var(--ss-gold) !important;
+    }
+
+    .site-header .mobile-menu-btn,
+    .site-header .icon-toggle-btn,
+    .site-header .dir-toggle-btn {
+      color: #f3d28f !important;
+      border-color: var(--ss-gold) !important;
+      background: transparent !important;
+    }
+
+    .site-header .nav-menu {
+      background: var(--ss-footer);
+    }
+
+    .site-header .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .site-header .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+    }
+
+    .ss-logo-symbol,
+    .ss-brand-symbol {
+      width: 48px;
+      height: 48px;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .site-header .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .site-header .brand-name,
+    .ss-brand-name {
+      font-family: Georgia, serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .site-header .brand-tagline,
+    .ss-brand-tagline {
+      font-size: .72rem;
+      line-height: 1.5;
+    }
+
+    .site-header .header-actions .btn-primary {
+      background: var(--ss-gold) !important;
+      color: var(--ss-footer) !important;
+      border-color: var(--ss-gold) !important;
+    }
+
+    /* HERO */
+    .ss-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 90px 0;
+      background:
+        linear-gradient(90deg, rgba(35, 20, 19, .90), rgba(65, 30, 31, .68), rgba(35, 20, 19, .20)),
+        url("https://images.unsplash.com/photo-1756758136788-a8b12ee98584?auto=format&fit=crop&w=2000&q=85") center/cover;
+      color: white;
+    }
+
+    .ss-hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      align-items: center;
+      gap: 45px;
+    }
+
+    .ss-eyebrow {
+      display: inline-block;
+      color: var(--ss-gold);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    .ss-hero h1 {
+      color: #fff8e9;
+      font-size: clamp(2.3rem, 5vw, 4.2rem);
+      line-height: 1.13;
+      margin-bottom: 22px;
+      font-family: Georgia, serif;
+    }
+
+    .ss-hero p {
+      color: #f2e9dc;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      max-width: 600px;
+      margin-bottom: 28px;
+    }
+
+    .ss-hero-image {
+      width: 100%;
+      height: 310px;
+      object-fit: cover;
+      border: 5px solid rgba(234, 213, 167, .8);
+      border-radius: 150px 150px 12px 12px;
+      box-shadow: 0 20px 50px rgba(0,0,0,.3);
+    }
+
+    /* BUTTONS */
+    .ss-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    .ss-btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 13px 24px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform .25s ease, background .25s ease;
+      cursor: pointer;
+    }
+
+    .ss-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .ss-btn-primary {
+      background: var(--ss-gold);
+      color: #2d1b16;
+    }
+
+    .ss-btn-outline {
+      border: 1px solid var(--ss-gold);
+      color: white;
+      background: transparent;
+    }
+
+    .ss-small-btn {
+      padding: 10px 15px;
+      font-size: .85rem;
+    }
+
+    /* SECTIONS */
+    .ss-section {
+      padding: 76px 0;
+    }
+
+    .ss-section-alt {
+      background: #f2eadc;
+    }
+
+    .ss-section-heading {
+      max-width: 760px;
+      margin: 0 auto 38px;
+      text-align: center;
+    }
+
+    .ss-section-heading h2 {
+      color: var(--ss-maroon);
+      font-family: Georgia, serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      margin-bottom: 12px;
+    }
+
+    .ss-section-heading p {
+      color: var(--ss-muted);
+      line-height: 1.7;
+    }
+
+    .ss-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 25px;
+    }
+
+    /* SERVICE CARDS */
+    .ss-card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: var(--ss-white);
+      border: 1px solid #e4d3b5;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(73, 43, 25, .07);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .ss-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 32px rgba(73, 43, 25, .13);
+    }
+
+    .ss-card-image {
+      display: block;
+      width: 100%;
+      height: 225px;
+      object-fit: cover;
+    }
+
+    .ss-card-body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 23px;
+    }
+
+    .ss-card h3 {
+      color: var(--ss-maroon);
+      font-family: Georgia, serif;
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+
+    .ss-card p {
+      color: var(--ss-muted);
+      line-height: 1.7;
+      font-size: .94rem;
+    }
+
+    .ss-card .ss-actions {
+      margin-top: auto;
+      padding-top: 17px;
+    }
+
+    /* SERVICE BUTTON VISIBILITY */
+    .ss-card .ss-btn-primary,
+    .ss-card .ss-actions a.ss-btn-primary {
+      background: #762638 !important;
+      color: #ffffff !important;
+      border: 1px solid #762638 !important;
+      font-weight: 700;
+    }
+
+    .ss-card .ss-btn-primary:hover {
+      background: #4d1725 !important;
+      color: #ffffff !important;
+    }
+
+    .ss-card .ss-btn-outline,
+    .ss-card .ss-actions a.ss-btn-outline {
+      background: #fffdf9 !important;
+      color: #762638 !important;
+      border: 1px solid #762638 !important;
+      font-weight: 700;
+    }
+
+    .ss-card .ss-btn-outline:hover {
+      background: #f3e6c9 !important;
+      color: #4d1725 !important;
+    }
+
+    .ss-label {
+      display: inline-block;
+      width: fit-content;
+      padding: 5px 10px;
+      margin-bottom: 12px;
+      background: #f3e6c9;
+      color: var(--ss-maroon);
+      border-radius: 3px;
+      font-size: .75rem;
+      font-weight: 800;
+    }
+
+    /* PROCESS */
+    .ss-process {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .ss-process-item {
+      padding: 26px 20px;
+      background: var(--ss-white);
+      border-bottom: 3px solid var(--ss-gold);
+      border-radius: 7px;
+    }
+
+    .ss-process-number {
+      display: block;
+      color: var(--ss-gold);
+      font-family: Georgia, serif;
+      font-size: 2.3rem;
+      margin-bottom: 15px;
+    }
+
+    .ss-process-item h3 {
+      color: var(--ss-maroon);
+      margin-bottom: 9px;
+    }
+
+    .ss-process-item p {
+      color: var(--ss-muted);
+      font-size: .92rem;
+      line-height: 1.65;
+    }
+
+    /* PRIEST DIRECTORY */
+    .ss-priest-card {
+      padding: 28px;
+      text-align: center;
+      background: var(--ss-white);
+      border: 1px solid #e4d3b5;
+      border-radius: 9px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+    }
+
+    .ss-priest-photo {
+      width: 125px;
+      height: 125px;
+      object-fit: cover;
+      object-position: center 25%;
+      border-radius: 50%;
+      border: 4px solid var(--ss-gold);
+      padding: 4px;
+      background: #f3e6c9;
+      margin: 0 auto 17px;
+      display: block;
+    }
+
+    .ss-priest-card h3 {
+      color: var(--ss-maroon);
+      font-family: Georgia, serif;
+      margin-bottom: 9px;
+    }
+
+    .ss-priest-card p {
+      color: var(--ss-muted);
+      line-height: 1.7;
+      font-size: .9rem;
+    }
+
+    .ss-priest-card .ss-btn {
+      margin-top: auto;
+    }
+
+    /* WHY CHOOSE US */
+    .ss-benefits {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .ss-benefit {
+      padding: 30px;
+      background: var(--ss-white);
+      border-left: 4px solid var(--ss-gold);
+      border-radius: 5px;
+    }
+
+    .ss-benefit-icon {
+      color: var(--ss-gold);
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .ss-benefit h3 {
+      color: var(--ss-maroon);
+      margin-bottom: 10px;
+    }
+
+    .ss-benefit p {
+      color: var(--ss-muted);
+      line-height: 1.7;
+    }
+
+    /* DEVOTEE TESTIMONIALS */
+    .ss-testimonial {
+      padding: 30px;
+      background: var(--ss-white);
+      border: 1px solid #e5d6bb;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .ss-testimonial blockquote {
+      color: #5e4b40;
+      font-family: Georgia, serif;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+
+    .ss-devotee-profile {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: auto;
+      padding-top: 15px;
+    }
+
+    .ss-devotee-photo {
+      width: 58px;
+      height: 58px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%;
+      border: 3px solid var(--ss-gold);
+      flex-shrink: 0;
+    }
+
+    .ss-devotee-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .ss-devotee-info strong {
+      color: var(--ss-maroon);
+      font-size: .95rem;
+    }
+
+    .ss-devotee-info span {
+      color: var(--ss-muted);
+      font-size: .78rem;
+    }
+
+    /* FAQ */
+    .ss-faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .ss-faq {
+      padding: 23px;
+      background: var(--ss-white);
+      border: 1px solid #e4d3b5;
+      border-top: 3px solid var(--ss-gold);
+      border-radius: 6px;
+    }
+
+    .ss-faq h3 {
+      color: var(--ss-maroon);
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+    }
+
+    .ss-faq p {
+      color: var(--ss-muted);
+      line-height: 1.7;
+      font-size: .93rem;
+    }
+
+    /* PLANNING GUIDE */
+    .ss-planning {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 45px;
+      align-items: center;
+    }
+
+    .ss-planning-image {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 5px solid #e4d3b5;
+    }
+
+    .ss-planning-list {
+      list-style: none;
+      padding: 0;
+      margin: 22px 0;
+    }
+
+    .ss-planning-list li {
+      display: flex;
+      gap: 15px;
+      padding: 13px 0;
+      border-bottom: 1px solid #e1d3bc;
+    }
+
+    .ss-planning-list span {
+      color: var(--ss-gold);
+      font-size: 1.3rem;
+      font-weight: 800;
+    }
+
+    .ss-planning-list strong {
+      color: var(--ss-maroon);
+    }
+
+    /* FINAL BOOKING BANNER */
+    .ss-booking-banner {
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 35px;
+      align-items: center;
+      background: var(--ss-dark-maroon);
+      color: white;
+      border: 2px solid var(--ss-gold);
+      border-radius: 10px;
+    }
+
+    .ss-booking-banner h2 {
+      color: #f6dfae;
+      font-family: Georgia, serif;
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .ss-booking-banner p {
+      color: #f1e4d8;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .ss-booking-image {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 7px;
+      border: 2px solid var(--ss-gold);
+    }
+
+    /* FOOTER */
+    .ss-footer {
+      padding: 55px 0 20px;
+      background: var(--ss-footer);
+      color: #f5ead8;
+    }
+
+    .ss-footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 30px;
+    }
+
+    .ss-footer h3 {
+      color: #e7c27b;
+      margin-bottom: 17px;
+    }
+
+    .ss-footer p,
+    .ss-footer a,
+    .ss-footer li {
+      color: #e8d9c8;
+      font-size: .9rem;
+      line-height: 1.9;
+    }
+
+    .ss-footer ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .ss-footer a {
+      text-decoration: none;
+    }
+
+    .ss-footer a:hover {
+      color: #e7c27b;
+    }
+
+    .ss-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 15px;
+      text-decoration: none;
+    }
+
+    .ss-brand-name {
+      display: block;
+      color: #f3d28f;
+    }
+
+    .ss-brand-tagline {
+      display: block;
+      color: #e8d9c8;
+    }
+
+    .ss-footer-bottom {
+      margin-top: 35px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.18);
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+      font-size: .82rem;
+    }
+
+    /* DARK THEME */
+    [data-theme="dark"] body {
+      background: #21191a;
+      color: #f5ead8;
+    }
+
+    [data-theme="dark"] .ss-section-alt {
+      background: #302526;
+    }
+
+    [data-theme="dark"] .ss-card,
+    [data-theme="dark"] .ss-process-item,
+    [data-theme="dark"] .ss-priest-card,
+    [data-theme="dark"] .ss-benefit,
+    [data-theme="dark"] .ss-testimonial,
+    [data-theme="dark"] .ss-faq {
+      background: #382c2d;
+      border-color: #80633e;
+    }
+
+    [data-theme="dark"] .ss-card h3,
+    [data-theme="dark"] .ss-process-item h3,
+    [data-theme="dark"] .ss-priest-card h3,
+    [data-theme="dark"] .ss-benefit h3,
+    [data-theme="dark"] .ss-faq h3,
+    [data-theme="dark"] .ss-section-heading h2 {
+      color: #e9c67f;
+    }
+
+    [data-theme="dark"] .ss-card p,
+    [data-theme="dark"] .ss-process-item p,
+    [data-theme="dark"] .ss-priest-card p,
+    [data-theme="dark"] .ss-benefit p,
+    [data-theme="dark"] .ss-faq p,
+    [data-theme="dark"] .ss-section-heading p {
+      color: #ddcfc2;
+    }
+
+    [data-theme="dark"] .ss-testimonial blockquote {
+      color: #e8d9c8;
+    }
+
+    [data-theme="dark"] .ss-devotee-info strong,
+    [data-theme="dark"] .ss-planning-list strong {
+      color: #e9c67f;
+    }
+
+    [data-theme="dark"] .ss-devotee-info span {
+      color: #ddcfc2;
+    }
+
+    [data-theme="dark"] .ss-card .ss-btn-primary,
+    [data-theme="dark"] .ss-card .ss-actions a.ss-btn-primary {
+      background: #c79a43 !important;
+      color: #35151e !important;
+      border: 1px solid #c79a43 !important;
+    }
+
+    [data-theme="dark"] .ss-card .ss-btn-primary:hover {
+      background: #ead5a7 !important;
+      color: #35151e !important;
+    }
+
+    [data-theme="dark"] .ss-card .ss-btn-outline,
+    [data-theme="dark"] .ss-card .ss-actions a.ss-btn-outline {
+      background: transparent !important;
+      color: #f3d28f !important;
+      border: 1px solid #c79a43 !important;
+    }
+
+    [data-theme="dark"] .ss-card .ss-btn-outline:hover {
+      background: #4d1725 !important;
+      color: #ffffff !important;
+    }
+
+    [data-theme="dark"] .ss-section-heading p {
+      color: #ddcfc2;
+    }
+
+    @media(max-width: 900px) {
+      .ss-hero-grid,
+      .ss-planning,
+      .ss-booking-banner {
+        grid-template-columns: 1fr;
+      }
+
+      .ss-grid,
+      .ss-benefits {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .ss-process {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .ss-footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .ss-hero-image {
+        max-width: 520px;
+      }
+    }
+
+    @media(max-width: 768px) {
+      .site-header .nav-menu {
+        background: var(--ss-footer) !important;
+      }
+
+      .site-header .nav-link {
+        color: #f3d28f !important;
+      }
+    }
+
+    @media(max-width: 600px) {
+      .ss-section {
+        padding: 52px 0;
+      }
+
+      .ss-hero {
+        padding: 60px 0;
+      }
+
+      .ss-grid,
+      .ss-benefits,
+      .ss-process,
+      .ss-faq-grid,
+      .ss-footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ss-booking-banner {
+        padding: 25px;
+      }
+
+      .ss-planning-image {
+        height: 300px;
+      }
+
+      .ss-actions {
+        flex-direction: column;
+      }
+
+      .ss-actions .ss-btn {
+        width: 100%;
+      }
+
+      .site-header .brand-name {
+        font-size: 1.05rem;
+      }
+
+      .site-header .brand-tagline {
+        font-size: .65rem;
+      }
+
+      .site-header .brand-mark,
+      .ss-logo-symbol {
+        width: 42px;
+        height: 42px;
+      }
+    }
+
+    @media(prefers-reduced-motion: reduce) {
+      .ss-card,
+      .ss-btn {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="home-page">
+
+<header class="site-header">
+  <div class="container header-inner">
+
+    <a href="index.html" class="brand-logo" aria-label="Sacred Sankalpam Home">
+      <span class="brand-mark">
+        <svg class="ss-logo-symbol" viewBox="0 0 48 48"
+          xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="24" cy="24" r="21" fill="#fbf7ef" stroke="#c79a43" stroke-width="2"/>
+          <path d="M24 8 L37 24 L24 40 L11 24 Z"
+            fill="none" stroke="#c79a43" stroke-width="2"/>
+          <circle cx="24" cy="24" r="5" fill="#762638"/>
+        </svg>
+      </span>
+
+      <span class="brand-text">
+        <span class="brand-name">Sacred Sankalpam</span>
+        <span class="brand-tagline">Pooja & Priest Booking</span>
+      </span>
+    </a>
+
+    <button type="button" class="mobile-menu-btn" id="mobileMenuBtn"
+      aria-label="Toggle navigation" aria-expanded="false" aria-controls="mainNav">
+      ☰
+    </button>
+
+    <nav class="nav-menu" id="mainNav" aria-label="Main Navigation">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="home-premium.html" class="nav-link">Premium Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="priests.html" class="nav-link">Priests</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="devotee-dashboard.html" class="nav-link">Dashboard</a>
+    </nav>
+
+    <div class="header-actions">
+      <button type="button" id="themeToggleBtn" class="icon-toggle-btn"
+        aria-label="Toggle theme" title="Toggle theme">◐</button>
+
+      <button type="button" id="dirToggleBtn" class="dir-toggle-btn"
+        aria-label="Toggle text direction" title="Toggle text direction">⇄</button>
+
+      <a href="login.html" class="btn btn-primary btn-sm">Login</a>
+    </div>
+
+  </div>
+</header>
+
+<main>
+
+  <!-- SECTION 1: HERO -->
+  <section class="ss-hero" id="home-sec-1">
+    <div class="container ss-hero-grid">
+      <div>
+        <span class="ss-eyebrow">Tradition · Devotion · Convenience</span>
+        <h1>Bring Sacred Traditions Closer to Your Home</h1>
+        <p>
+          Discover traditional Hindu pooja services, explore priest profiles,
+          review Samagri requirements and plan your family ceremonies through
+          one convenient platform.
+        </p>
+
+        <div class="ss-actions">
+          <a href="services.html" class="ss-btn ss-btn-primary">Explore Pooja Services</a>
+          <a href="priests.html" class="ss-btn ss-btn-outline">Find a Priest</a>
+        </div>
+      </div>
+
+      <div>
+        <img class="ss-hero-image"
+          src="https://images.unsplash.com/photo-1606293926075-69a00dbfde81?auto=format&fit=crop&w=1200&q=85"
+          alt="Traditional temple architecture"
+          loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: POOJA SERVICES -->
+  <section class="ss-section" id="home-sec-2">
+    <div class="container">
+      <div class="ss-section-heading">
+        <span class="ss-eyebrow">Our Services</span>
+        <h2>Traditional Pooja Services</h2>
+        <p>
+          Explore common Hindu ceremonies and understand their purpose
+          before selecting a service for your family.
+        </p>
+      </div>
+
+      <div class="ss-grid">
+
+        <article class="ss-card">
+          <img class="ss-card-image"
+            src="https://images.unsplash.com/photo-1630764883473-e8c2056f0589?auto=format&fit=crop&w=900&q=85"
+            alt="Sacred fire used in a traditional Hindu Havan ceremony"
+            loading="lazy">
+
+          <div class="ss-card-body">
+            <span class="ss-label">Homam / Havan</span>
+            <h3>Ganapathi Homam</h3>
+            <p>
+              A traditional fire ritual performed to invoke Lord Ganesha's
+              blessings before new beginnings and auspicious occasions.
+            </p>
+            <div class="ss-actions">
+              <a href="pooja-details.html?pooja=ganapathi-homam"
+                class="ss-btn ss-btn-primary ss-small-btn">View Details</a>
+              <a href="devotee-dashboard.html"
+                class="ss-btn ss-btn-outline ss-small-btn">Book Now</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="ss-card">
+          <img class="ss-card-image"
+            src="https://images.unsplash.com/photo-1766344599202-233ef34a3482?auto=format&fit=crop&w=900&q=85"
+            alt="Traditional Hindu religious ceremony"
+            loading="lazy">
+
+          <div class="ss-card-body">
+            <span class="ss-label">Housewarming</span>
+            <h3>Gruhapravesam</h3>
+            <p>
+              A traditional housewarming ceremony conducted when a family
+              enters a newly built or newly acquired home.
+            </p>
+            <div class="ss-actions">
+              <a href="pooja-details.html?pooja=gruhapravesam"
+                class="ss-btn ss-btn-primary ss-small-btn">View Details</a>
+              <a href="devotee-dashboard.html"
+                class="ss-btn ss-btn-outline ss-small-btn">Book Now</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="ss-card">
+          <img class="ss-card-image"
+            src="https://images.unsplash.com/photo-1700765020008-7fd77c847f8a?auto=format&fit=crop&w=900&q=85"
+            alt="Traditional Indian pooja offerings"
+            loading="lazy">
+
+          <div class="ss-card-body">
+            <span class="ss-label">Family Pooja</span>
+            <h3>Satyanarayana Pooja</h3>
+            <p>
+              A devotional ceremony commonly performed by families on
+              auspicious occasions and special days.
+            </p>
+            <div class="ss-actions">
+              <a href="pooja-details.html?pooja=satyanarayana-pooja"
+                class="ss-btn ss-btn-primary ss-small-btn">View Details</a>
+              <a href="devotee-dashboard.html"
+                class="ss-btn ss-btn-outline ss-small-btn">Book Now</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: HOW IT WORKS -->
+  <section class="ss-section ss-section-alt" id="home-sec-3">
+    <div class="container">
+      <div class="ss-section-heading">
+        <span class="ss-eyebrow">Easy Booking</span>
+        <h2>How Sacred Sankalpam Works</h2>
+        <p>A simple process to help you plan your ceremony.</p>
+      </div>
+
+      <div class="ss-process">
+        <article class="ss-process-item">
+          <span class="ss-process-number">01</span>
+          <h3>Select a Pooja</h3>
+          <p>Explore the available ceremonies and read their details.</p>
+        </article>
+
+        <article class="ss-process-item">
+          <span class="ss-process-number">02</span>
+          <h3>Choose a Priest</h3>
+          <p>Review priest profiles, languages and specializations.</p>
+        </article>
+
+        <article class="ss-process-item">
+          <span class="ss-process-number">03</span>
+          <h3>Request a Booking</h3>
+          <p>Enter your preferred date, time and ceremony location.</p>
+        </article>
+
+        <article class="ss-process-item">
+          <span class="ss-process-number">04</span>
+          <h3>Receive Confirmation</h3>
+          <p>Track your booking request and confirmation status.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: PRIEST DIRECTORY -->
+  <section class="ss-section" id="home-sec-4">
+    <div class="container">
+      <div class="ss-section-heading">
+        <span class="ss-eyebrow">Priest Directory</span>
+        <h2>Featured Priests</h2>
+        <p>
+          These are illustrative sample profiles and photographs.
+          They do not represent verified or confirmed priest listings.
+        </p>
+      </div>
+
+      <div class="ss-grid">
+
+        <!-- PRIEST PROFILE 1 -->
+        <article class="ss-priest-card">
+          <img class="ss-priest-photo"
+            src="https://pujari.aiyensi.com/images/priest2.png"
+            alt="Illustrative traditional Hindu priest portrait for Acharya Raghavan sample profile"
+            loading="lazy"
+            referrerpolicy="no-referrer">
+
+          <span class="ss-label">Sample Profile</span>
+          <h3>Acharya Raghavan S.</h3>
+          <p>
+            Specialization: Homam and Griha Pooja<br>
+            Languages: Tamil, Sanskrit, English<br>
+            Experience: Sample information
+          </p>
+          <a href="priest-profile.html?priest=raghavan"
+            class="ss-btn ss-btn-primary ss-small-btn">View Profile</a>
+        </article>
+
+        <!-- PRIEST PROFILE 2 -->
+        <article class="ss-priest-card">
+          <img class="ss-priest-photo"
+            src="https://vedicgod.com/images/a-professional-profile-picture-of-guru-naveen-iyer-1762687740417.webp"
+            alt="Illustrative South Indian Vedic priest portrait for Pandit Karthik sample profile"
+            loading="lazy"
+            referrerpolicy="no-referrer">
+
+          <span class="ss-label">Sample Profile</span>
+          <h3>Pandit Karthik M.</h3>
+          <p>
+            Specialization: Marriage and Festival Pooja<br>
+            Languages: Tamil, Telugu, English<br>
+            Experience: Sample information
+          </p>
+          <a href="priest-profile.html?priest=karthik"
+            class="ss-btn ss-btn-primary ss-small-btn">View Profile</a>
+        </article>
+
+        <!-- PRIEST PROFILE 3 -->
+        <article class="ss-priest-card">
+          <img class="ss-priest-photo"
+            src="https://temple360.arjunweb.in/Content/DietySubCategories/NormalImages/397-vedha.png"
+            alt="Illustrative traditional temple priest portrait for Vathiyar Narayanan sample profile"
+            loading="lazy"
+            referrerpolicy="no-referrer">
+
+          <span class="ss-label">Sample Profile</span>
+          <h3>Vathiyar Narayanan V.</h3>
+          <p>
+            Specialization: Traditional Rituals<br>
+            Languages: Tamil, Sanskrit<br>
+            Experience: Sample information
+          </p>
+          <a href="priest-profile.html?priest=narayanan"
+            class="ss-btn ss-btn-primary ss-small-btn">View Profile</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: WHY CHOOSE US -->
+  <section class="ss-section ss-section-alt" id="home-sec-5">
+    <div class="container">
+      <div class="ss-section-heading">
+        <span class="ss-eyebrow">Our Approach</span>
+        <h2>Why Choose Sacred Sankalpam?</h2>
+        <p>
+          A platform designed to make traditional ceremony planning
+          clearer and more convenient.
+        </p>
+      </div>
+
+      <div class="ss-benefits">
+        <article class="ss-benefit">
+          <div class="ss-benefit-icon">✧</div>
+          <h3>Clear Ceremony Information</h3>
+          <p>
+            Understand the purpose, general procedure and requirements
+            of each listed pooja.
+          </p>
+        </article>
+
+        <article class="ss-benefit">
+          <div class="ss-benefit-icon">❖</div>
+          <h3>Samagri Preparation</h3>
+          <p>
+            Review the required ritual materials before your selected
+            ceremony date.
+          </p>
+        </article>
+
+        <article class="ss-benefit">
+          <div class="ss-benefit-icon">ૐ</div>
+          <h3>Organized Booking</h3>
+          <p>
+            Use dedicated platform dashboards to manage booking requests
+            and ceremony-related information.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: DEVOTEE EXPERIENCES -->
+  <section class="ss-section" id="home-sec-6">
+    <div class="container">
+      <div class="ss-section-heading">
+        <span class="ss-eyebrow">Devotee Experiences</span>
+        <h2>What Devotees Say</h2>
+        <p>
+          These are illustrative sample testimonials and profile photographs
+          for website demonstration only.
+        </p>
+      </div>
+
+      <div class="ss-grid">
+
+        <article class="ss-testimonial">
+          <blockquote>
+            “Having the ceremony information and Samagri checklist
+            together made planning easier for our family.”
+          </blockquote>
+
+          <div class="ss-devotee-profile">
+            <img class="ss-devotee-photo"
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=85"
+              alt="Illustrative devotee profile portrait"
+              loading="lazy">
+
+            <div class="ss-devotee-info">
+              <strong>Meenakshi R.</strong>
+              <span>Sample Devotee Profile</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="ss-testimonial">
+          <blockquote>
+            “The booking process was easy to understand, and the
+            ceremony details were presented clearly.”
+          </blockquote>
+
+          <div class="ss-devotee-profile">
+            <img class="ss-devotee-photo"
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=85"
+              alt="Illustrative devotee profile portrait"
+              loading="lazy">
+
+            <div class="ss-devotee-info">
+              <strong>Senthil K.</strong>
+              <span>Sample Devotee Profile</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="ss-testimonial">
+          <blockquote>
+            “It was helpful to see the pooja information and booking
+            steps in one place.”
+          </blockquote>
+
+          <div class="ss-devotee-profile">
+            <img class="ss-devotee-photo"
+              src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=85"
+              alt="Illustrative devotee profile portrait"
+              loading="lazy">
+
+            <div class="ss-devotee-info">
+              <strong>Lakshmi P.</strong>
+              <span>Sample Devotee Profile</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: FAQ -->
+  <section class="ss-section ss-section-alt" id="home-sec-7">
+    <div class="container">
+      <div class="ss-section-heading">
+        <span class="ss-eyebrow">Help Centre</span>
+        <h2>Frequently Asked Questions</h2>
+        <p>Find answers to common questions about the platform.</p>
+      </div>
+
+      <div class="ss-faq-grid">
+        <article class="ss-faq">
+          <h3>How can I book a pooja?</h3>
+          <p>
+            Explore the services page, select a ceremony, review its details
+            and submit your booking request through the available portal.
+          </p>
+        </article>
+
+        <article class="ss-faq">
+          <h3>Can I choose a preferred priest?</h3>
+          <p>
+            You can explore the priest directory and select a preferred
+            profile where the booking functionality supports it.
+          </p>
+        </article>
+
+        <article class="ss-faq">
+          <h3>Can I check the Samagri list?</h3>
+          <p>
+            Review the ceremony details page for the materials and
+            preparation information provided for that pooja.
+          </p>
+        </article>
+
+        <article class="ss-faq">
+          <h3>Are the displayed priest profiles verified?</h3>
+          <p>
+            Profiles marked as sample are demonstration content, not
+            verified priest records.
+          </p>
+        </article>
+
+        <article class="ss-faq">
+          <h3>Can I check my booking status?</h3>
+          <p>
+            Use the devotee dashboard to access booking information
+            supported by your configured application.
+          </p>
+        </article>
+
+        <article class="ss-faq">
+          <h3>Which language is supported?</h3>
+          <p>The current website interface is presented in English.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: CEREMONY PLANNING GUIDE -->
+  <section class="ss-section" id="home-sec-8">
+    <div class="container ss-planning">
+      <div>
+        <img class="ss-planning-image"
+          src="https://images.unsplash.com/photo-1757308530438-4e2340a6475f?auto=format&fit=crop&w=1100&q=85"
+          alt="Traditional brass lamp used during Hindu worship"
+          loading="lazy">
+      </div>
+
+      <div>
+        <span class="ss-eyebrow">Prepare with Care</span>
+        <h2 style="color:var(--ss-maroon);font-family:Georgia,serif;font-size:2.3rem;">
+          A Thoughtful Guide to Planning Your Pooja
+        </h2>
+
+        <p style="color:var(--ss-muted);line-height:1.8;">
+          Proper preparation helps families organize a ceremony
+          comfortably. Consider these points before submitting a
+          booking request.
+        </p>
+
+        <ol class="ss-planning-list">
+          <li>
+            <span>01</span>
+            <div>
+              <strong>Choose your ceremony</strong>
+              <p>Understand the pooja purpose and ceremony details.</p>
+            </div>
+          </li>
+
+          <li>
+            <span>02</span>
+            <div>
+              <strong>Confirm your date and venue</strong>
+              <p>Keep the preferred date, time and complete address ready.</p>
+            </div>
+          </li>
+
+          <li>
+            <span>03</span>
+            <div>
+              <strong>Review Samagri requirements</strong>
+              <p>Check the ritual materials and preparation checklist.</p>
+            </div>
+          </li>
+
+          <li>
+            <span>04</span>
+            <div>
+              <strong>Submit your booking request</strong>
+              <p>Provide the required details and wait for confirmation.</p>
+            </div>
+          </li>
+        </ol>
+
+        <a href="services.html" class="ss-btn ss-btn-primary">
+          Explore Pooja Services
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 9: BOOKING LAUNCHPAD -->
+  <section class="ss-section ss-section-alt" id="home-sec-9">
+    <div class="container">
+      <div class="ss-booking-banner">
+        <div>
+          <span class="ss-eyebrow">Begin Your Journey</span>
+          <h2>Plan Your Next Sacred Ceremony with Confidence</h2>
+          <p>
+            Explore the available pooja services, understand the
+            requirements and use the devotee portal to begin your
+            booking request.
+          </p>
+
+          <div class="ss-actions">
+            <a href="devotee-dashboard.html" class="ss-btn ss-btn-primary">
+              Open Booking Dashboard
+            </a>
+
+            <a href="contact.html" class="ss-btn ss-btn-outline">
+              Contact Us
+            </a>
+          </div>
+        </div>
+
+        <img class="ss-booking-image"
+          src="https://images.unsplash.com/photo-1665003739938-b7fa7c1c1bfc?auto=format&fit=crop&w=1200&q=85"
+          alt="Traditional South Indian temple corridor"
+          loading="lazy">
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="ss-footer">
+  <div class="container">
+    <div class="ss-footer-grid">
+
+      <div>
+        <a href="index.html" class="ss-brand" aria-label="Sacred Sankalpam home">
+          <svg class="ss-brand-symbol" viewBox="0 0 48 48"
+            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="24" cy="24" r="21" fill="#fbf7ef" stroke="#c79a43" stroke-width="2"/>
+            <path d="M24 8 L37 24 L24 40 L11 24 Z"
+              fill="none" stroke="#c79a43" stroke-width="2"/>
+            <circle cx="24" cy="24" r="5" fill="#762638"/>
+          </svg>
+
+          <span>
+            <span class="ss-brand-name">Sacred Sankalpam</span>
+            <span class="ss-brand-tagline">Pooja & Priest Booking</span>
+          </span>
+        </a>
+
+        <p>
+          Bringing traditional ceremony information and priest booking
+          services together through a convenient digital platform.
+        </p>
+      </div>
+
+      <div>
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="home-premium.html">Premium Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Pooja Services</a></li>
+          <li><a href="priests.html">Priests</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Dashboards</h3>
+        <ul>
+          <li><a href="devotee-dashboard.html">Devotee Dashboard</a></li>
+          <li><a href="priest-dashboard.html">Priest Dashboard</a></li>
+          <li><a href="admin-dashboard.html">Admin Dashboard</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="contact.html">Support</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="ss-footer-bottom">
+      <span>© 2026 Sacred Sankalpam. All rights reserved.</span>
+      <span>Traditional Values · Digital Convenience</span>
+    </div>
+  </div>
+</footer>
+
+<!-- EXISTING JAVASCRIPT FILES -->
+<script src="js/theme.js"></script>
+<script src="js/direction.js"></script>
+<script src="js/section-motion.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>

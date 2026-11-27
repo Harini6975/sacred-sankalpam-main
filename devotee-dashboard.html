@@ -1,0 +1,1241 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sacred Sankalpam | Devotee Dashboard</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+
+  <style>
+    :root {
+      --dev-ivory: #FAF7F0;
+      --dev-cream: #F3EBDD;
+      --dev-maroon: #7D2635;
+      --dev-maroon-dark: #581A27;
+      --dev-gold: #C69A45;
+      --dev-gold-light: #E8D3A5;
+      --dev-text: #342B27;
+      --dev-muted: #81756D;
+      --dev-border: #E9DFD0;
+      --dev-white: #FFFFFF;
+      --dev-shadow: 0 12px 35px rgba(76, 46, 30, 0.07);
+    }
+
+    body {
+      background: var(--dev-ivory);
+      color: var(--dev-text);
+    }
+
+    /* Sidebar */
+
+    .dash-sidebar {
+      background: linear-gradient(180deg, #FFFDF8 0%, #F5EBDD 100%);
+      border-right: 1px solid var(--dev-border);
+    }
+
+    .dash-sidebar-header {
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--dev-border);
+    }
+
+    .dash-sidebar .brand-name {
+      color: var(--dev-maroon);
+      letter-spacing: -0.4px;
+    }
+
+    .dash-sidebar .brand-tagline {
+      color: var(--dev-muted);
+    }
+
+    .dash-role-pill {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 15px;
+      padding: 7px 13px;
+      border-radius: 30px;
+      background: #F1E2C6;
+      color: var(--dev-maroon);
+      border: 1px solid #E4D0A7;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+    }
+
+    .dash-nav-list {
+      gap: 7px;
+      padding-top: 22px;
+    }
+
+    .dash-nav-btn {
+      border-radius: 10px;
+      transition: all 0.25s ease;
+      font-weight: 600;
+    }
+
+    .dash-nav-btn:hover {
+      background: #F0E4D1;
+      color: var(--dev-maroon);
+      transform: translateX(3px);
+    }
+
+    .dash-nav-btn.is-active {
+      background: var(--dev-maroon);
+      color: #FFF9EF;
+      box-shadow: 0 6px 16px rgba(125, 38, 53, 0.18);
+    }
+
+    .dash-logout-wrap {
+      border-top: 1px solid var(--dev-border);
+      padding-top: 18px;
+    }
+
+    /* Topbar */
+
+    .dash-topbar {
+      background: rgba(255, 253, 248, 0.94);
+      border-bottom: 1px solid var(--dev-border);
+      backdrop-filter: blur(12px);
+    }
+
+    .dash-welcome-title {
+      color: var(--dev-maroon);
+      letter-spacing: -0.7px;
+    }
+
+    .dash-welcome-sub {
+      color: var(--dev-muted);
+      line-height: 1.6;
+    }
+
+    .dash-topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .icon-toggle-btn,
+    .dir-toggle-btn {
+      border: 1px solid var(--dev-border);
+      background: #FFFDF8;
+      color: var(--dev-maroon);
+      border-radius: 10px;
+      transition: all 0.2s ease;
+    }
+
+    .icon-toggle-btn:hover,
+    .dir-toggle-btn:hover {
+      background: #F2E5D1;
+      border-color: var(--dev-gold);
+    }
+
+    .dash-profile-chip {
+      background: #F4EADB;
+      border: 1px solid var(--dev-border);
+      border-radius: 30px;
+      padding: 6px 13px 6px 7px;
+    }
+
+    .dash-profile-avatar {
+      background: var(--dev-maroon);
+      color: white;
+    }
+
+    .dash-profile-name {
+      color: var(--dev-maroon);
+      font-weight: 700;
+    }
+
+    /* Main content */
+
+    .dash-content {
+      padding: 28px;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    .dash-section {
+      animation: devoteeFadeIn 0.35s ease;
+    }
+
+    @keyframes devoteeFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .dash-section-banner {
+      display: block;
+      width: 100%;
+      height: 185px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 16px;
+      border: 1px solid var(--dev-gold-light);
+      margin-bottom: 24px;
+      box-shadow: var(--dev-shadow);
+      background: #E9DDC9;
+    }
+
+    .dev-section-heading {
+      color: var(--dev-maroon);
+      font-family: Georgia, serif;
+      font-size: clamp(1.35rem, 2vw, 1.8rem);
+      margin-bottom: 7px;
+      letter-spacing: -0.4px;
+    }
+
+    .dev-section-description {
+      color: var(--dev-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .dev-heading-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .dev-heading-decoration {
+      width: 55px;
+      height: 3px;
+      background: var(--dev-gold);
+      border-radius: 5px;
+      margin-top: 12px;
+    }
+
+    /* Cards */
+
+    .dash-content .card {
+      background: var(--dev-white);
+      border: 1px solid var(--dev-border);
+      border-radius: 16px;
+      box-shadow: var(--dev-shadow);
+      padding: 23px;
+    }
+
+    .dev-card-title {
+      color: var(--dev-maroon);
+      font-family: Georgia, serif;
+      font-size: 1.18rem;
+      margin-bottom: 7px;
+    }
+
+    .dev-card-description {
+      color: var(--dev-muted);
+      font-size: 0.85rem;
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+
+    /* KPI cards */
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 17px;
+      margin-bottom: 25px;
+    }
+
+    .kpi-card {
+      position: relative;
+      overflow: hidden;
+      background: #FFFDF9;
+      border: 1px solid var(--dev-border);
+      border-radius: 15px;
+      padding: 21px;
+      box-shadow: var(--dev-shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 30px rgba(76, 46, 30, 0.11);
+    }
+
+    .kpi-card::after {
+      content: "";
+      position: absolute;
+      width: 65px;
+      height: 65px;
+      right: -20px;
+      top: -20px;
+      border-radius: 50%;
+      background: rgba(198, 154, 69, 0.10);
+    }
+
+    .kpi-label {
+      color: var(--dev-muted);
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .kpi-value {
+      color: var(--dev-maroon);
+      font-family: Georgia, serif;
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    /* Tables */
+
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: 10px;
+    }
+
+    .dash-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      min-width: 650px;
+    }
+
+    .dash-table thead th {
+      background: #F5EBDD;
+      color: var(--dev-maroon);
+      font-size: 0.77rem;
+      font-weight: 700;
+      letter-spacing: 0.35px;
+      text-transform: uppercase;
+      padding: 14px 15px;
+      border-bottom: 1px solid var(--dev-border);
+      white-space: nowrap;
+    }
+
+    .dash-table thead th:first-child {
+      border-radius: 9px 0 0 0;
+    }
+
+    .dash-table thead th:last-child {
+      border-radius: 0 9px 0 0;
+    }
+
+    .dash-table tbody td {
+      padding: 15px;
+      border-bottom: 1px solid #F0E9DE;
+      color: var(--dev-text);
+      font-size: 0.86rem;
+      vertical-align: middle;
+    }
+
+    .dash-table tbody tr:hover {
+      background: #FFFCF6;
+    }
+
+    .dash-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Forms */
+
+    .form-group {
+      margin-bottom: 17px;
+    }
+
+    .form-label {
+      display: block;
+      color: #554139;
+      font-size: 0.84rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .form-control {
+      width: 100%;
+      min-height: 45px;
+      padding: 11px 13px;
+      color: var(--dev-text);
+      background: #FFFEFB;
+      border: 1px solid #E5D9C7;
+      border-radius: 9px;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .form-control:focus {
+      border-color: var(--dev-gold);
+      box-shadow: 0 0 0 3px rgba(198, 154, 69, 0.13);
+    }
+
+    .form-control::placeholder {
+      color: #AA9C8D;
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    /* Buttons */
+
+    .dash-content .btn-primary {
+      background: var(--dev-maroon);
+      color: #FFF9EF;
+      border: 1px solid var(--dev-maroon);
+      border-radius: 9px;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+
+    .dash-content .btn-primary:hover {
+      background: var(--dev-maroon-dark);
+      border-color: var(--dev-maroon-dark);
+      transform: translateY(-1px);
+    }
+
+    .dash-content .btn-secondary {
+      background: #F3EBDD;
+      color: var(--dev-maroon);
+      border: 1px solid #E5D3B4;
+      border-radius: 9px;
+      font-weight: 700;
+    }
+
+    .dash-content .btn-secondary:hover {
+      background: #EBDCC4;
+    }
+
+    /* Booking steps */
+
+    .dev-booking-step {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin: 23px 0 15px;
+      color: var(--dev-maroon);
+      font-family: Georgia, serif;
+      font-size: 1.02rem;
+      font-weight: 700;
+    }
+
+    .dev-step-number {
+      width: 29px;
+      height: 29px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--dev-maroon);
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 0.78rem;
+    }
+
+    .dev-samagri-preview {
+      background: #FBF6EC;
+      border: 1px solid #E9D8B6;
+      border-radius: 12px;
+      padding: 18px;
+      margin: 22px 0;
+    }
+
+    .dev-samagri-preview h3 {
+      color: var(--dev-maroon);
+      font-family: Georgia, serif;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .dev-samagri-preview ul {
+      line-height: 1.9;
+    }
+
+    /* General section grids */
+
+    .dev-content-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      align-items: start;
+    }
+
+    .dev-profile-card {
+      max-width: 700px;
+    }
+
+    .dev-empty-note {
+      color: var(--dev-muted);
+      background: #FBF7F0;
+      border: 1px dashed #DCCAA9;
+      border-radius: 12px;
+      padding: 22px;
+      text-align: center;
+      font-size: 0.88rem;
+    }
+
+    /* Dark theme */
+
+    [data-theme="dark"] {
+      --dev-ivory: #191615;
+      --dev-white: #25201E;
+      --dev-text: #F1E8DC;
+      --dev-muted: #B9AA9B;
+      --dev-border: #493A32;
+    }
+
+    [data-theme="dark"] body {
+      background: #191615;
+      color: #F1E8DC;
+    }
+
+    [data-theme="dark"] .dash-sidebar,
+    [data-theme="dark"] .dash-topbar {
+      background: #211B19;
+      border-color: #493A32;
+    }
+
+    [data-theme="dark"] .dash-sidebar .brand-name,
+    [data-theme="dark"] .dash-welcome-title,
+    [data-theme="dark"] .dev-section-heading,
+    [data-theme="dark"] .dev-card-title {
+      color: #E6B85E;
+    }
+
+    [data-theme="dark"] .dash-sidebar .brand-tagline,
+    [data-theme="dark"] .dash-welcome-sub {
+      color: #B9AA9B;
+    }
+
+    [data-theme="dark"] .dash-role-pill {
+      background: #493522;
+      color: #E6B85E;
+      border-color: #755A31;
+    }
+
+    [data-theme="dark"] .dash-nav-btn {
+      color: #E8DED2;
+    }
+
+    [data-theme="dark"] .dash-nav-btn:hover {
+      background: #3A2B26;
+      color: #E6B85E;
+    }
+
+    [data-theme="dark"] .dash-nav-btn.is-active {
+      background: #7D2635;
+      color: #FFFFFF;
+    }
+
+    [data-theme="dark"] .dash-profile-chip,
+    [data-theme="dark"] .icon-toggle-btn,
+    [data-theme="dark"] .dir-toggle-btn {
+      background: #302622;
+      border-color: #59463A;
+      color: #E6B85E;
+    }
+
+    [data-theme="dark"] .dash-profile-name {
+      color: #E6B85E;
+    }
+
+    [data-theme="dark"] .kpi-card,
+    [data-theme="dark"] .dash-content .card {
+      background: #25201E;
+      border-color: #493A32;
+    }
+
+    [data-theme="dark"] .kpi-value {
+      color: #E6B85E;
+    }
+
+    [data-theme="dark"] .kpi-card::after {
+      background: rgba(230, 184, 94, 0.08);
+    }
+
+    [data-theme="dark"] .dash-table thead th {
+      background: #382B25;
+      color: #E6B85E;
+      border-color: #493A32;
+    }
+
+    [data-theme="dark"] .dash-table tbody td {
+      color: #E9DED2;
+      border-color: #40332D;
+    }
+
+    [data-theme="dark"] .dash-table tbody tr:hover {
+      background: #302622;
+    }
+
+    [data-theme="dark"] .form-label,
+    [data-theme="dark"] .dev-booking-step,
+    [data-theme="dark"] .dev-samagri-preview h3 {
+      color: #E6B85E;
+    }
+
+    [data-theme="dark"] .form-control {
+      background: #302622;
+      border-color: #59463A;
+      color: #F1E8DC;
+    }
+
+    [data-theme="dark"] .dev-samagri-preview,
+    [data-theme="dark"] .dev-empty-note {
+      background: #302622;
+      border-color: #59463A;
+      color: #D8CABC;
+    }
+
+    [data-theme="dark"] .dev-step-number {
+      background: #9B3548;
+    }
+
+    [data-theme="dark"] .dash-content .btn-secondary {
+      background: #493522;
+      border-color: #755A31;
+      color: #E6B85E;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 1050px) {
+      .kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .dash-content {
+        padding: 17px;
+      }
+
+      .dash-section-banner {
+        height: 145px;
+        margin-bottom: 19px;
+      }
+
+      .dev-content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .dash-content .card {
+        padding: 17px;
+      }
+
+      .dash-topbar-right {
+        gap: 7px;
+      }
+
+      .dash-profile-name {
+        display: none;
+      }
+
+      .dash-welcome-title {
+        font-size: 1.15rem;
+      }
+
+      .dash-welcome-sub {
+        font-size: 0.76rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .kpi-card {
+        padding: 15px;
+      }
+
+      .kpi-value {
+        font-size: 1.6rem;
+      }
+
+      .kpi-label {
+        font-size: 0.72rem;
+      }
+
+      .dash-content {
+        padding: 13px;
+      }
+
+      .dash-section-banner {
+        height: 120px;
+      }
+
+      .dash-topbar-right {
+        gap: 5px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="dashBackdrop" class="dash-backdrop"></div>
+
+  <div class="dashboard-shell">
+
+    <!-- SIDEBAR -->
+    <aside id="dashSidebar" class="dash-sidebar" aria-label="Devotee Sidebar Navigation">
+
+      <div class="dash-sidebar-header">
+        <div>
+          <a href="index.html" class="brand-logo" aria-label="Sacred Sankalpam Home">
+
+            <svg class="brand-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <circle cx="24" cy="24" r="21" stroke="#8B2635" stroke-width="2.5" fill="#FAF7F2"/>
+              <polygon points="24,8 37,24 24,40 11,24" stroke="#D69B37" stroke-width="2.2" fill="none"/>
+              <circle cx="24" cy="24" r="5" fill="#8B2635"/>
+            </svg>
+
+            <span class="brand-text">
+              <span class="brand-name">Sacred Sankalpam</span>
+              <span class="brand-tagline">Pooja & Priest Booking</span>
+            </span>
+          </a>
+
+          <span class="dash-role-pill">Devotee Portal</span>
+        </div>
+      </div>
+
+      <nav class="dash-nav-list" aria-label="Devotee Workspace Sections">
+        <button type="button" class="dash-nav-btn is-active" data-target="overview">Overview</button>
+        <button type="button" class="dash-nav-btn" data-target="book">Book a Pooja</button>
+        <button type="button" class="dash-nav-btn" data-target="bookings">My Bookings</button>
+        <button type="button" class="dash-nav-btn" data-target="priests">My Priests</button>
+        <button type="button" class="dash-nav-btn" data-target="samagri">Samagri</button>
+        <button type="button" class="dash-nav-btn" data-target="payments">Payments</button>
+        <button type="button" class="dash-nav-btn" data-target="notifications">Notifications</button>
+        <button type="button" class="dash-nav-btn" data-target="profile">My Profile</button>
+      </nav>
+
+      <div class="dash-logout-wrap">
+        <button type="button" id="logoutBtn" class="btn btn-secondary btn-block btn-sm">
+          Logout
+        </button>
+      </div>
+
+    </aside>
+
+    <!-- MAIN WORKSPACE -->
+    <div class="dash-main-wrap">
+
+      <!-- TOPBAR -->
+      <header class="dash-topbar">
+
+        <div class="dash-topbar-left">
+
+          <button type="button" id="dashMobileToggle" class="dash-mobile-toggle"
+            aria-label="Toggle sidebar menu">
+
+            <svg width="20" height="20" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+
+          </button>
+
+          <div>
+            <h1 class="dash-welcome-title">
+              <span>Welcome,</span>
+              <span id="topbarUserName">Devotee User (Sample)</span>
+            </h1>
+
+            <p class="dash-welcome-sub">
+              Your sacred ceremonies, bookings, and spiritual services in one place.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="dash-topbar-right">
+
+          <button type="button" id="themeToggleBtn" class="icon-toggle-btn"
+            aria-label="Toggle light and dark mode"
+            title="Toggle light and dark mode">
+
+            <svg width="18" height="18" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+
+          </button>
+
+          <button type="button" id="dirToggleBtn" class="dir-toggle-btn"
+            aria-label="Switch layout to Right-to-Left (RTL)"
+            title="Switch layout to Right-to-Left (RTL)">⇄</button>
+
+          <div class="dash-profile-chip">
+            <span id="topbarUserAvatar" class="dash-profile-avatar">D</span>
+            <span class="dash-profile-name">Devotee Portal</span>
+          </div>
+
+        </div>
+
+      </header>
+
+      <!-- DASHBOARD CONTENT -->
+      <main class="dash-content">
+
+        <div id="devoteeFeedback" class="dash-feedback" role="alert"></div>
+
+        <!-- 1. OVERVIEW -->
+        <section class="dash-section is-active" data-section="overview">
+
+          <img
+            src="images/banners/kalasham-banner.png"
+            data-fallback="images/banners/temple-bg.png"
+            alt="Sacred brass kalasham ceremonial overview"
+            class="dash-section-banner">
+
+          <div class="dev-heading-row">
+            <div>
+              <h2 class="dev-section-heading">Your Devotional Overview</h2>
+              <div class="dev-heading-decoration"></div>
+              <p class="dev-section-description">
+                Keep track of your pooja bookings and upcoming ceremonies.
+              </p>
+            </div>
+          </div>
+
+          <div class="kpi-grid">
+
+            <div class="kpi-card">
+              <p class="kpi-label">Total Bookings</p>
+              <p id="kpiTotalVal" class="kpi-value">0</p>
+            </div>
+
+            <div class="kpi-card">
+              <p class="kpi-label">Upcoming Bookings</p>
+              <p id="kpiUpcomingVal" class="kpi-value">0</p>
+            </div>
+
+            <div class="kpi-card">
+              <p class="kpi-label">Completed Bookings</p>
+              <p id="kpiCompletedVal" class="kpi-value">0</p>
+            </div>
+
+            <div class="kpi-card">
+              <p class="kpi-label">Pending Bookings</p>
+              <p id="kpiPendingVal" class="kpi-value">0</p>
+            </div>
+
+          </div>
+
+          <div class="card">
+
+            <div class="dev-heading-row">
+              <div>
+                <h2 class="dev-card-title">Recent Booking Activity</h2>
+                <p class="dev-card-description">
+                  Review your latest pooja booking updates.
+                </p>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="dash-table">
+
+                <thead>
+                  <tr>
+                    <th>Booking ID</th>
+                    <th>Pooja</th>
+                    <th>Priest</th>
+                    <th>Date</th>
+                    <th>Booking Status</th>
+                  </tr>
+                </thead>
+
+                <tbody id="recentActivityBody"></tbody>
+
+              </table>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- 2. BOOK A POOJA -->
+        <section class="dash-section" data-section="book">
+
+          <img
+            src="images/pooja/ganapathi-homam.png"
+            data-fallback="images/banners/temple-bg.png"
+            alt="Traditional homam and pooja booking setup"
+            class="dash-section-banner">
+
+          <div class="dev-heading-row">
+            <div>
+              <h2 class="dev-section-heading">Book Your Sacred Pooja</h2>
+              <div class="dev-heading-decoration"></div>
+              <p class="dev-section-description">
+                Choose your ceremony, select a priest, and share your preferred arrangements.
+              </p>
+            </div>
+          </div>
+
+          <div class="card" style="max-width:850px;">
+
+            <form id="devoteeBookingForm" novalidate>
+
+              <div class="dev-booking-step">
+                <span class="dev-step-number">1</span>
+                Select Your Pooja
+              </div>
+
+              <div class="form-group">
+                <label for="bookPoojaSelect" class="form-label">Pooja / Ceremony</label>
+                <select id="bookPoojaSelect" class="form-control"></select>
+              </div>
+
+              <div class="dev-booking-step">
+                <span class="dev-step-number">2</span>
+                Choose Your Priest
+              </div>
+
+              <div class="form-group">
+                <label for="bookPriestSelect" class="form-label">Available Priest</label>
+                <select id="bookPriestSelect" class="form-control"></select>
+              </div>
+
+              <div class="dev-booking-step">
+                <span class="dev-step-number">3</span>
+                Select Ceremony Date
+              </div>
+
+              <div class="form-group">
+                <label for="bookDateInput" class="form-label">Preferred Date</label>
+                <input type="date" id="bookDateInput" class="form-control" required>
+              </div>
+
+              <div class="dev-booking-step">
+                <span class="dev-step-number">4</span>
+                Select Preferred Time
+              </div>
+
+              <div class="form-group">
+                <label for="bookTimeSelect" class="form-label">Available Time Slot</label>
+                <select id="bookTimeSelect" class="form-control">
+                  <option value="07:00 AM">07:00 AM</option>
+                  <option value="09:30 AM">09:30 AM</option>
+                  <option value="06:00 PM">06:00 PM</option>
+                </select>
+              </div>
+
+              <div class="dev-booking-step">
+                <span class="dev-step-number">5</span>
+                Ceremony Location
+              </div>
+
+              <div class="form-group">
+                <label for="bookLocationInput" class="form-label">Where will the ceremony take place?</label>
+                <input
+                  type="text"
+                  id="bookLocationInput"
+                  class="form-control"
+                  placeholder="Enter your complete ceremony address"
+                  required>
+              </div>
+
+              <div class="dev-booking-step">
+                <span class="dev-step-number">6</span>
+                Additional Requirements
+              </div>
+
+              <div class="form-group">
+                <label for="bookNotesInput" class="form-label">Special Instructions (Optional)</label>
+                <textarea
+                  id="bookNotesInput"
+                  rows="3"
+                  class="form-control"
+                  placeholder="Share any special arrangements or requirements..."></textarea>
+              </div>
+
+              <div class="dev-samagri-preview">
+
+                <h3>7. Required Samagri for Selected Pooja</h3>
+
+                <p class="dev-card-description">
+                  Review the materials required for your selected ceremony.
+                </p>
+
+                <ul
+                  id="bookingSamagriPreview"
+                  style="list-style:disc;padding-left:20px;color:var(--dev-muted);margin-bottom:0;">
+                </ul>
+
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">
+                8. Submit Booking Request
+              </button>
+
+            </form>
+
+          </div>
+
+        </section>
+
+        <!-- 3. MY BOOKINGS -->
+        <section class="dash-section" data-section="bookings">
+
+          <img
+            src="images/pooja/gruhapravesam.png"
+            data-fallback="images/banners/temple-bg.png"
+            alt="Traditional housewarming ceremony"
+            class="dash-section-banner">
+
+          <div class="dev-heading-row">
+            <div>
+              <h2 class="dev-section-heading">My Bookings</h2>
+              <div class="dev-heading-decoration"></div>
+              <p class="dev-section-description">
+                View your booking details, ceremony dates, and payment status.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+
+            <div class="table-responsive">
+              <table class="dash-table">
+
+                <thead>
+                  <tr>
+                    <th>Booking ID</th>
+                    <th>Pooja</th>
+                    <th>Priest</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Location</th>
+                    <th>Booking Status</th>
+                    <th>Payment Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+
+                <tbody id="myBookingsBody"></tbody>
+
+              </table>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- 4. MY PRIESTS -->
+        <section class="dash-section" data-section="priests">
+
+          <img
+            src="images/banners/priest-banner.png"
+            data-fallback="images/banners/temple-bg.png"
+            alt="Priests and traditional ceremonial guidance"
+            class="dash-section-banner">
+
+          <div class="dev-heading-row">
+            <div>
+              <h2 class="dev-section-heading">My Priests</h2>
+              <div class="dev-heading-decoration"></div>
+              <p class="dev-section-description">
+                View the priests associated with your ceremony bookings.
+              </p>
+            </div>
+          </div>
+
+          <div id="myPriestsGrid" class="grid grid-3"></div>
+
+        </section>
+
+        <!-- 5. SAMAGRI -->
+        <section class="dash-section" data-section="samagri">
+
+          <img
+            src="images/pooja/satyanarayana-pooja.png"
+            data-fallback="images/banners/temple-bg.png"
+            alt="Traditional pooja and sacred Samagri materials"
+            class="dash-section-banner">
+
+          <div class="dev-heading-row">
+            <div>
+              <h2 class="dev-section-heading">Pooja Samagri</h2>
+              <div class="dev-heading-decoration"></div>
+              <p class="dev-section-description">
+                Check the materials needed for your booked ceremonies.
+              </p>
+            </div>
+          </div>
+
+          <div id="bookedSamagriList" class="grid grid-2"></div>
+
+        </section>
+
+        <!-- 6. PAYMENTS -->
+        <section class="dash-section" data-section="payments">
+
+          <div class="card">
+
+            <img
+              src="images/pooja/festival-lakshmi.png"
+              data-fallback="images/banners/temple-bg.png"
+              alt="Traditional ceremonial offerings"
+              class="dash-section-banner">
+
+            <div class="dev-heading-row">
+              <div>
+                <h2 class="dev-section-heading">Payments & Transactions</h2>
+                <div class="dev-heading-decoration"></div>
+                <p class="dev-section-description">
+                  Review payment records associated with your bookings.
+                </p>
+              </div>
+            </div>
+
+            <p class="dev-card-description">
+              Prototype notice: Payment statuses are displayed for workflow demonstration only.
+              No real payment gateway is connected.
+            </p>
+
+            <div class="table-responsive">
+              <table class="dash-table">
+
+                <thead>
+                  <tr>
+                    <th>Booking ID</th>
+                    <th>Pooja</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Payment Status</th>
+                  </tr>
+                </thead>
+
+                <tbody id="paymentsTableBody"></tbody>
+
+              </table>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- 7. NOTIFICATIONS -->
+        <section class="dash-section" data-section="notifications">
+
+          <img
+            src="images/banners/corridor-banner.png"
+            data-fallback="images/banners/temple-bg.png"
+            alt="Traditional temple corridor"
+            class="dash-section-banner">
+
+          <div class="dev-heading-row">
+            <div>
+              <h2 class="dev-section-heading">Notifications</h2>
+              <div class="dev-heading-decoration"></div>
+              <p class="dev-section-description">
+                Stay informed about booking confirmations, updates, and reminders.
+              </p>
+            </div>
+          </div>
+
+          <div id="devoteeNotifsList" class="grid" style="gap:14px;"></div>
+
+        </section>
+
+        <!-- 8. MY PROFILE -->
+        <section class="dash-section" data-section="profile">
+
+          <div class="card dev-profile-card">
+
+            <img
+              src="images/pooja/marriage-mandapam.png"
+              data-fallback="images/banners/temple-bg.png"
+              alt="Traditional wedding ceremony arrangements"
+              class="dash-section-banner">
+
+            <div class="dev-heading-row">
+              <div>
+                <h2 class="dev-section-heading">My Profile</h2>
+                <div class="dev-heading-decoration"></div>
+                <p class="dev-section-description">
+                  Keep your personal and contact information up to date.
+                </p>
+              </div>
+            </div>
+
+            <form id="devoteeProfileForm" novalidate>
+
+              <div class="form-group">
+                <label for="devProfileName" class="form-label">Full Name</label>
+                <input
+                  type="text"
+                  id="devProfileName"
+                  class="form-control"
+                  placeholder="Enter your full name"
+                  required>
+              </div>
+
+              <div class="form-group">
+                <label for="devProfileEmail" class="form-label">Email Address</label>
+                <input
+                  type="email"
+                  id="devProfileEmail"
+                  class="form-control"
+                  placeholder="Enter your email address"
+                  required>
+              </div>
+
+              <div class="form-group">
+                <label for="devProfilePhone" class="form-label">Phone Number</label>
+                <input
+                  type="text"
+                  id="devProfilePhone"
+                  class="form-control"
+                  placeholder="Enter your phone number">
+              </div>
+
+              <div class="form-group">
+                <label for="devProfileCity" class="form-label">City / Service Area</label>
+                <input
+                  type="text"
+                  id="devProfileCity"
+                  class="form-control"
+                  placeholder="Enter your city or service area">
+              </div>
+
+              <button type="submit" class="btn btn-primary">
+                Save Profile
+              </button>
+
+            </form>
+
+          </div>
+
+        </section>
+
+      </main>
+
+    </div>
+
+  </div>
+
+  <!-- EXISTING JAVASCRIPT FILES -->
+  <script src="js/theme.js"></script>
+  <script src="js/direction.js"></script>
+  <script src="js/section-motion.js"></script>
+  <script src="js/devotee.js"></script>
+
+</body>
+</html>

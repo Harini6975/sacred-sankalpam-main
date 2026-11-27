@@ -1,0 +1,2143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#762333">
+  <meta name="description" content="Sacred Sankalpam Priest Portal - Manage your profile, pooja services, availability, bookings and earnings.">
+
+  <title>Sacred Sankalpam | Priest Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+
+  <style>
+    /* =====================================================
+       SACRED SANKALPAM - PRIEST DASHBOARD
+       Premium Ivory | Maroon | Antique Gold
+    ===================================================== */
+
+    :root {
+      --p-maroon: #762333;
+      --p-maroon-dark: #4A1722;
+      --p-gold: #C69A4A;
+      --p-gold-light: #E9D3A6;
+      --p-cream: #F8F5EE;
+      --p-white: #FFFFFF;
+      --p-text: #302724;
+      --p-muted: #81746D;
+      --p-border: #EAE3D9;
+      --p-green: #34785C;
+      --p-orange: #B77A2D;
+      --p-red: #B54A4A;
+      --p-shadow: 0 8px 28px rgba(62, 35, 29, .06);
+      --p-radius: 16px;
+      --p-serif: "Cormorant Garamond", Georgia, serif;
+      --p-sans: "Inter", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--p-sans);
+      background: var(--p-cream);
+      color: var(--p-text);
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .dashboard-shell {
+      min-height: 100vh;
+      background: var(--p-cream);
+    }
+
+    /* SIDEBAR */
+
+    .dash-sidebar {
+      background: #FFFEFB;
+      border-right: 1px solid var(--p-border);
+      box-shadow: 5px 0 25px rgba(48, 30, 25, .025);
+      width: 270px;
+      padding: 24px 17px;
+      position: fixed;
+      inset: 0 auto 0 0;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      transition: transform .3s ease;
+    }
+
+    .dash-sidebar-header {
+      padding: 0 9px 23px;
+      border-bottom: 1px solid var(--p-border);
+      margin-bottom: 22px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 43px;
+      height: 43px;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .brand-name {
+      font-family: var(--p-serif);
+      font-size: 23px;
+      font-weight: 700;
+      color: var(--p-maroon);
+      line-height: 1;
+    }
+
+    .brand-tagline {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--p-muted);
+    }
+
+    .dash-role-pill {
+      display: inline-flex;
+      margin: 16px 0 0 52px;
+      padding: 6px 12px;
+      border-radius: 30px;
+      background: #F5EBDD;
+      color: var(--p-maroon);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .dash-nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .dash-nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      width: 100%;
+      border: 0;
+      background: transparent;
+      padding: 12px 14px;
+      border-radius: 10px;
+      color: #70635D;
+      text-align: left;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all .2s ease;
+    }
+
+    .dash-nav-btn svg {
+      width: 19px;
+      height: 19px;
+      flex-shrink: 0;
+      stroke: currentColor;
+    }
+
+    .dash-nav-btn:hover {
+      background: #F8F1E7;
+      color: var(--p-maroon);
+    }
+
+    .dash-nav-btn.is-active {
+      background: var(--p-maroon);
+      color: #FFFFFF;
+      box-shadow: 0 5px 14px rgba(118, 35, 51, .18);
+    }
+
+    .dash-nav-btn .nav-count {
+      margin-left: auto;
+      min-width: 22px;
+      height: 22px;
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      background: #F2E4CE;
+      color: var(--p-maroon);
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .dash-logout-wrap {
+      margin-top: auto;
+      padding-top: 22px;
+    }
+
+    .dash-logout-wrap .btn {
+      width: 100%;
+      border-radius: 10px;
+      padding: 12px;
+      font-weight: 700;
+    }
+
+    /* MAIN */
+
+    .dash-main-wrap {
+      margin-left: 270px;
+      min-height: 100vh;
+      min-width: 0;
+    }
+
+    .dash-topbar {
+      height: 86px;
+      background: rgba(255, 254, 251, .96);
+      border-bottom: 1px solid var(--p-border);
+      padding: 0 34px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+    }
+
+    .dash-topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .dash-welcome-title {
+      margin: 0;
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 7px;
+      font-family: var(--p-serif);
+      font-size: 25px;
+      color: var(--p-maroon-dark);
+      line-height: 1.2;
+    }
+
+    .dash-welcome-title > span:first-child {
+      font-weight: 500;
+    }
+
+    .dash-welcome-title > span:last-child {
+      font-weight: 700;
+    }
+
+    .dash-welcome-sub {
+      margin: 5px 0 0;
+      color: var(--p-muted);
+      font-size: 11px;
+    }
+
+    .dash-topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .icon-toggle-btn,
+    .dir-toggle-btn,
+    .dash-mobile-toggle {
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      border: 1px solid var(--p-border);
+      background: #FFFFFF;
+      color: var(--p-maroon);
+    }
+
+    .icon-toggle-btn:hover,
+    .dir-toggle-btn:hover {
+      background: #F8F0E4;
+    }
+
+    .dash-profile-chip {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 5px 12px 5px 5px;
+      background: #F7F0E7;
+      border: 1px solid var(--p-border);
+      border-radius: 30px;
+    }
+
+    .dash-profile-avatar {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--p-maroon);
+      color: #FFFFFF;
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .dash-profile-name {
+      color: var(--p-maroon-dark);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .dash-mobile-toggle {
+      display: none;
+    }
+
+    /* CONTENT */
+
+    .dash-content {
+      max-width: 1600px;
+      margin: auto;
+      padding: 32px 34px 50px;
+    }
+
+    .dash-section {
+      display: none;
+      animation: sectionEnter .35s ease both;
+    }
+
+    .dash-section.is-active {
+      display: block;
+    }
+
+    @keyframes sectionEnter {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section-heading {
+      margin-bottom: 25px;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 6px;
+      color: var(--p-maroon-dark);
+      font-family: var(--p-serif);
+      font-size: 32px;
+      font-weight: 700;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--p-muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .section-eyebrow {
+      color: var(--p-gold);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+
+    /* FEEDBACK */
+
+    .dash-feedback {
+      display: none;
+      padding: 12px 16px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      background: #EAF4ED;
+      border: 1px solid #C7DFCE;
+      color: #286243;
+      font-size: 12px;
+    }
+
+    /* HERO BANNER */
+
+    .dash-section-banner {
+      display: block;
+      width: 100%;
+      height: 185px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: var(--p-radius);
+      border: 1px solid var(--p-border);
+      margin-bottom: 25px;
+      box-shadow: var(--p-shadow);
+      background: #E9DED0;
+    }
+
+    /* OVERVIEW WELCOME */
+
+    .overview-welcome {
+      background:
+        linear-gradient(105deg, rgba(65, 20, 32, .96), rgba(118, 35, 51, .88)),
+        url("https://marutidham.org/images/yagna-ceremony-hall.png") center/cover;
+      border-radius: var(--p-radius);
+      min-height: 190px;
+      padding: 32px;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+      color: white;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .overview-welcome::after {
+      content: "ॐ";
+      position: absolute;
+      right: 55px;
+      top: -35px;
+      font-family: Georgia, serif;
+      font-size: 190px;
+      color: rgba(255,255,255,.07);
+      pointer-events: none;
+    }
+
+    .overview-welcome-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .overview-welcome .welcome-label {
+      color: var(--p-gold-light);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 9px;
+    }
+
+    .overview-welcome h2 {
+      font-family: var(--p-serif);
+      font-size: 38px;
+      line-height: 1.1;
+      margin: 0 0 9px;
+      color: #FFFFFF;
+    }
+
+    .overview-welcome p {
+      color: rgba(255,255,255,.78);
+      font-size: 12px;
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    .overview-date {
+      position: relative;
+      z-index: 1;
+      min-width: 135px;
+      text-align: center;
+      border-left: 1px solid rgba(255,255,255,.25);
+      padding-left: 25px;
+    }
+
+    .overview-date strong {
+      display: block;
+      font-family: var(--p-serif);
+      font-size: 35px;
+      color: var(--p-gold-light);
+    }
+
+    .overview-date span {
+      font-size: 10px;
+      color: rgba(255,255,255,.75);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* KPI */
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 25px;
+    }
+
+    .kpi-card {
+      position: relative;
+      background: #FFFFFF;
+      padding: 20px;
+      border-radius: 14px;
+      border: 1px solid var(--p-border);
+      box-shadow: var(--p-shadow);
+      min-width: 0;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(62, 35, 29, .09);
+    }
+
+    .kpi-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 15px;
+      background: #F7EFE5;
+      color: var(--p-maroon);
+    }
+
+    .kpi-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+    }
+
+    .kpi-label {
+      color: var(--p-muted);
+      font-size: 10px;
+      font-weight: 700;
+      margin: 0 0 7px;
+    }
+
+    .kpi-value {
+      color: var(--p-maroon-dark);
+      font-family: var(--p-serif);
+      font-size: 33px;
+      font-weight: 700;
+      margin: 0;
+      line-height: 1;
+    }
+
+    .kpi-note {
+      color: #A49A91;
+      font-size: 9px;
+      margin-top: 9px;
+    }
+
+    /* CARDS AND GRIDS */
+
+    .dash-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      align-items: start;
+    }
+
+    .dash-card,
+    .card {
+      background: #FFFFFF;
+      border: 1px solid var(--p-border);
+      border-radius: var(--p-radius);
+      padding: 23px;
+      box-shadow: var(--p-shadow);
+      min-width: 0;
+    }
+
+    .dash-card h3,
+    .card h2 {
+      color: var(--p-maroon-dark);
+      font-family: var(--p-serif);
+      font-size: 23px;
+      margin: 0 0 8px;
+    }
+
+    .dash-card-description {
+      color: var(--p-muted);
+      font-size: 11px;
+      line-height: 1.7;
+      margin: 0 0 18px;
+    }
+
+    .dash-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 17px;
+    }
+
+    /* PROFILE */
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 17px;
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--p-border);
+    }
+
+    .priest-profile-photo-sm {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 20%;
+      border: 3px solid var(--p-gold);
+      background: #F1E6D7;
+      flex-shrink: 0;
+    }
+
+    .profile-header h2 {
+      margin: 0 0 5px;
+      font-family: var(--p-serif);
+      font-size: 26px;
+      color: var(--p-maroon);
+    }
+
+    .profile-header p {
+      margin: 0;
+      color: var(--p-muted);
+      font-size: 11px;
+    }
+
+    .profile-form {
+      max-width: 900px;
+    }
+
+    .form-group {
+      margin-bottom: 17px;
+      min-width: 0;
+    }
+
+    .form-label {
+      display: block;
+      color: #55463F;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .form-control {
+      width: 100%;
+      min-height: 43px;
+      border: 1px solid #E6DED4;
+      border-radius: 9px;
+      background: #FFFEFC;
+      color: var(--p-text);
+      padding: 11px 13px;
+      font-size: 12px;
+      outline: none;
+      transition: border .2s, box-shadow .2s;
+    }
+
+    .form-control:focus {
+      border-color: var(--p-gold);
+      box-shadow: 0 0 0 3px rgba(198,154,74,.13);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* BUTTONS */
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 9px;
+      border: 1px solid transparent;
+      padding: 11px 17px;
+      font-size: 11px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all .2s ease;
+    }
+
+    .btn-primary {
+      background: var(--p-maroon);
+      color: #FFFFFF;
+      border-color: var(--p-maroon);
+    }
+
+    .btn-primary:hover {
+      background: var(--p-maroon-dark);
+      border-color: var(--p-maroon-dark);
+    }
+
+    .btn-secondary {
+      background: #F7EFE5;
+      color: var(--p-maroon);
+      border-color: #EADBC5;
+    }
+
+    .btn-secondary:hover {
+      background: #EFE0CA;
+    }
+
+    .btn-block {
+      width: 100%;
+    }
+
+    /* TABLES */
+
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid var(--p-border);
+      border-radius: 10px;
+    }
+
+    .dash-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+      background: #FFFFFF;
+    }
+
+    .dash-table th {
+      background: #F8F3EB;
+      color: #69564B;
+      font-size: 10px;
+      font-weight: 800;
+      text-align: left;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      padding: 14px 13px;
+      white-space: nowrap;
+    }
+
+    .dash-table td {
+      color: #514640;
+      font-size: 11px;
+      padding: 14px 13px;
+      border-top: 1px solid #F0EAE2;
+      vertical-align: middle;
+    }
+
+    .dash-table tbody tr:hover {
+      background: #FFFCF7;
+    }
+
+    /* STATUS */
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 30px;
+      padding: 5px 10px;
+      font-size: 9px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .status-pending {
+      color: #94601D;
+      background: #FFF1D9;
+    }
+
+    .status-approved,
+    .status-confirmed,
+    .status-completed {
+      color: #286345;
+      background: #E5F3E9;
+    }
+
+    .status-rejected,
+    .status-cancelled {
+      color: #A33D3D;
+      background: #FBE9E8;
+    }
+
+    /* SLOT AND NOTIFICATION ITEMS */
+
+    .dash-list-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      background: #FFFEFC;
+      border: 1px solid var(--p-border);
+      border-radius: 11px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+
+    .dash-list-item strong {
+      display: block;
+      color: var(--p-maroon-dark);
+      font-size: 11px;
+      margin-bottom: 4px;
+    }
+
+    .dash-list-item span {
+      color: var(--p-muted);
+      font-size: 10px;
+    }
+
+    .notification-item {
+      background: #FFFFFF;
+      border: 1px solid var(--p-border);
+      border-left: 3px solid var(--p-gold);
+      border-radius: 10px;
+      padding: 17px;
+      box-shadow: var(--p-shadow);
+    }
+
+    /* AVAILABILITY */
+
+    .availability-intro {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .availability-legend {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--p-muted);
+      font-size: 10px;
+    }
+
+    .legend-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+    }
+
+    /* FEEDBACK EMPTY STATES */
+
+    .empty-state {
+      text-align: center;
+      padding: 35px 15px;
+      color: var(--p-muted);
+      font-size: 11px;
+      border: 1px dashed var(--p-border);
+      border-radius: 11px;
+      background: #FFFEFC;
+    }
+
+    .empty-state svg {
+      width: 32px;
+      height: 32px;
+      color: var(--p-gold);
+      margin-bottom: 10px;
+    }
+
+    /* DARK THEME */
+
+    [data-theme="dark"] {
+      --p-cream: #171416;
+      --p-white: #211C1E;
+      --p-text: #F2EAE3;
+      --p-muted: #B8A9A1;
+      --p-border: #40343A;
+      --p-shadow: 0 8px 25px rgba(0,0,0,.16);
+    }
+
+    [data-theme="dark"] body,
+    [data-theme="dark"] .dashboard-shell {
+      background: var(--p-cream);
+      color: var(--p-text);
+    }
+
+    [data-theme="dark"] .dash-sidebar,
+    [data-theme="dark"] .dash-topbar,
+    [data-theme="dark"] .card,
+    [data-theme="dark"] .dash-card,
+    [data-theme="dark"] .kpi-card,
+    [data-theme="dark"] .dash-table,
+    [data-theme="dark"] .notification-item {
+      background: #211C1E;
+      border-color: var(--p-border);
+    }
+
+    [data-theme="dark"] .dash-nav-btn {
+      color: #D2C4BC;
+    }
+
+    [data-theme="dark"] .dash-nav-btn.is-active {
+      background: var(--p-maroon);
+      color: #FFFFFF;
+    }
+
+    [data-theme="dark"] .dash-welcome-title,
+    [data-theme="dark"] .section-heading h2,
+    [data-theme="dark"] .kpi-value,
+    [data-theme="dark"] .dash-card h3,
+    [data-theme="dark"] .card h2 {
+      color: #F0D7A8;
+    }
+
+    [data-theme="dark"] .form-control,
+    [data-theme="dark"] .dash-list-item,
+    [data-theme="dark"] .empty-state {
+      background: #2A2326;
+      color: #F2EAE3;
+      border-color: var(--p-border);
+    }
+
+    [data-theme="dark"] .form-label,
+    [data-theme="dark"] .dash-table td {
+      color: #E1D5CE;
+    }
+
+    [data-theme="dark"] .dash-table th {
+      background: #33272C;
+      color: #E8D4B1;
+    }
+
+    [data-theme="dark"] .dash-table tbody tr:hover {
+      background: #2D2428;
+    }
+
+    [data-theme="dark"] .dash-profile-chip,
+    [data-theme="dark"] .icon-toggle-btn,
+    [data-theme="dark"] .dir-toggle-btn {
+      background: #33272C;
+      border-color: var(--p-border);
+    }
+
+    [data-theme="dark"] .dash-profile-name {
+      color: #F0D7A8;
+    }
+
+    [data-theme="dark"] .dash-section-banner {
+      border-color: #665037;
+    }
+
+    /* MOBILE BACKDROP */
+
+    .dash-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(25, 14, 17, .55);
+      z-index: 90;
+    }
+
+    .dash-backdrop.is-visible {
+      display: block;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 1200px) {
+      .kpi-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .dash-content {
+        padding: 27px 25px 40px;
+      }
+
+      .dash-topbar {
+        padding: 0 25px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .dash-sidebar {
+        transform: translateX(-100%);
+      }
+
+      .dash-sidebar.is-open {
+        transform: translateX(0);
+      }
+
+      .dash-main-wrap {
+        margin-left: 0;
+      }
+
+      .dash-mobile-toggle {
+        display: grid;
+      }
+
+      .dash-topbar {
+        height: 76px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .dash-topbar {
+        padding: 0 14px;
+        gap: 8px;
+      }
+
+      .dash-topbar-right {
+        gap: 6px;
+      }
+
+      .dash-welcome-title {
+        font-size: 20px;
+      }
+
+      .dash-welcome-sub {
+        font-size: 9px;
+        max-width: 210px;
+      }
+
+      .dash-profile-name,
+      .dir-toggle-btn {
+        display: none;
+      }
+
+      .dash-profile-chip {
+        padding: 3px;
+        border: 0;
+        background: transparent;
+      }
+
+      .dash-content {
+        padding: 20px 14px 35px;
+      }
+
+      .kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .kpi-card {
+        padding: 15px;
+      }
+
+      .kpi-value {
+        font-size: 28px;
+      }
+
+      .dash-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .overview-welcome {
+        min-height: 170px;
+        padding: 23px;
+      }
+
+      .overview-welcome h2 {
+        font-size: 30px;
+      }
+
+      .overview-date {
+        display: none;
+      }
+
+      .dash-section-banner {
+        height: 140px;
+      }
+
+      .dash-card,
+      .card {
+        padding: 17px;
+      }
+
+      .profile-header {
+        align-items: flex-start;
+      }
+
+      .profile-header h2 {
+        font-size: 22px;
+      }
+
+      .section-heading h2 {
+        font-size: 27px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .kpi-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .dash-welcome-sub {
+        display: none;
+      }
+
+      .overview-welcome h2 {
+        font-size: 26px;
+      }
+    }
+
+    /* ACCESSIBILITY */
+
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid rgba(198,154,74,.45);
+      outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="dashBackdrop" class="dash-backdrop"></div>
+
+<div class="dashboard-shell">
+
+  <!-- =====================================================
+       SIDEBAR
+  ====================================================== -->
+
+  <aside id="dashSidebar" class="dash-sidebar" aria-label="Priest Sidebar Navigation">
+
+    <div class="dash-sidebar-header">
+
+      <div>
+        <a href="index.html" class="brand-logo" aria-label="Sacred Sankalpam Home">
+
+          <svg class="brand-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <circle cx="24" cy="24" r="21" stroke="#8B2635" stroke-width="2.5" fill="#FAF7F2"/>
+            <polygon points="24,8 37,24 24,40 11,24" stroke="#D69B37" stroke-width="2.2" fill="none"/>
+            <circle cx="24" cy="24" r="5" fill="#8B2635"/>
+          </svg>
+
+          <span class="brand-text">
+            <span class="brand-name">Sacred Sankalpam</span>
+            <span class="brand-tagline">Pooja & Priest Booking</span>
+          </span>
+
+        </a>
+
+        <span class="dash-role-pill">Priest Portal</span>
+      </div>
+
+    </div>
+
+    <nav class="dash-nav-list" aria-label="Priest Workspace Sections">
+
+      <button type="button" class="dash-nav-btn is-active" data-target="overview">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+          <rect x="3" y="3" width="8" height="8" rx="1"/>
+          <rect x="13" y="3" width="8" height="5" rx="1"/>
+          <rect x="13" y="10" width="8" height="11" rx="1"/>
+          <rect x="3" y="13" width="8" height="8" rx="1"/>
+        </svg>
+        Overview
+      </button>
+
+      <button type="button" class="dash-nav-btn" data-target="profile">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+          <circle cx="12" cy="8" r="4"/>
+          <path d="M4 21a8 8 0 0 1 16 0"/>
+        </svg>
+        My Profile
+      </button>
+
+      <button type="button" class="dash-nav-btn" data-target="services">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+          <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 1 4 17.5z"/>
+          <path d="M4 17.5A2.5 2.5 0 0 1 6.5 15H20"/>
+          <path d="M8 7h8"/>
+        </svg>
+        My Services
+      </button>
+
+      <button type="button" class="dash-nav-btn" data-target="availability">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+          <rect x="3" y="4" width="18" height="17" rx="2"/>
+          <path d="M16 2v4M8 2v4M3 10h18"/>
+          <path d="m9 15 2 2 4-4"/>
+        </svg>
+        Availability
+      </button>
+
+      <button type="button" class="dash-nav-btn" data-target="requests">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+          <path d="M8 3h8l4 4v14H4V3z"/>
+          <path d="M8 3v5h8V3M8 13h8M8 17h5"/>
+        </svg>
+        Booking Requests
+        <span class="nav-count">5</span>
+      </button>
+
+      <button type="button" class="dash-nav-btn" data-target="schedule">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+          <rect x="3" y="4" width="18" height="17" rx="2"/>
+          <path d="M16 2v4M8 2v4M3 10h18"/>
+          <path d="M8 14h3M8 17h6"/>
+        </svg>
+        My Schedule
+      </button>
+
+      <button type="button" class="dash-nav-btn" data-target="completed">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="m8 12 2.5 2.5L16 9"/>
+        </svg>
+        Completed Poojas
+      </button>
+
+      <button type="button" class="dash-nav-btn" data-target="earnings">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+          <rect x="3" y="5" width="18" height="15" rx="2"/>
+          <path d="M3 10h18M7 15h4"/>
+          <path d="M16 2v3"/>
+        </svg>
+        Earnings
+      </button>
+
+      <button type="button" class="dash-nav-btn" data-target="notifications">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+          <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+          <path d="M10 21h4"/>
+        </svg>
+        Notifications
+      </button>
+
+    </nav>
+
+    <div class="dash-logout-wrap">
+      <button type="button" id="logoutBtn" class="btn btn-secondary btn-block">
+        Logout
+      </button>
+    </div>
+
+  </aside>
+
+
+  <!-- =====================================================
+       MAIN WORKSPACE
+  ====================================================== -->
+
+  <div class="dash-main-wrap">
+
+    <!-- TOPBAR -->
+
+    <header class="dash-topbar">
+
+      <div class="dash-topbar-left">
+
+        <button type="button" id="dashMobileToggle" class="dash-mobile-toggle" aria-label="Toggle sidebar menu">
+
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+
+        </button>
+
+        <div>
+
+          <h1 class="dash-welcome-title">
+            <span>Welcome,</span>
+            <span id="priestTopName">Acharya Raghavan S. (Sample)</span>
+          </h1>
+
+          <p class="dash-welcome-sub">
+            Your sacred workspace for managing ceremonies and devotees.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="dash-topbar-right">
+
+        <button type="button" id="themeToggleBtn" class="icon-toggle-btn" aria-label="Toggle light and dark mode" title="Toggle theme">
+
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+
+        </button>
+
+        <button type="button" id="dirToggleBtn" class="dir-toggle-btn" aria-label="Switch layout to Right-to-Left (RTL)" title="Switch layout direction">
+          ⇄
+        </button>
+
+        <div class="dash-profile-chip">
+
+          <span id="priestTopAvatar" class="dash-profile-avatar">A</span>
+
+          <span class="dash-profile-name">Priest Portal</span>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- PAGE CONTENT -->
+
+    <main class="dash-content">
+
+      <div id="priestFeedback" class="dash-feedback" role="alert"></div>
+
+
+      <!-- =================================================
+           1. OVERVIEW
+      ================================================== -->
+
+      <section class="dash-section is-active" data-section="overview">
+
+        <div class="overview-welcome">
+
+          <div class="overview-welcome-content">
+
+            <div class="welcome-label">Sacred Sankalpam · Priest Workspace</div>
+
+            <h2>Namaste, Acharya!</h2>
+
+            <p>
+              Manage your pooja services, review devotee requests,
+              and organize your upcoming ceremonies in one place.
+            </p>
+
+          </div>
+
+          <div class="overview-date">
+            <strong>ॐ</strong>
+            <span>Your Sacred Journey</span>
+          </div>
+
+        </div>
+
+
+        <div class="section-heading">
+          <div class="section-eyebrow">Dashboard Overview</div>
+          <h2>Your Activity</h2>
+          <p>A quick summary of your bookings, ceremonies, and earnings.</p>
+        </div>
+
+
+        <div class="kpi-grid">
+
+          <div class="kpi-card">
+
+            <div class="kpi-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+                <rect x="3" y="4" width="18" height="17" rx="2"/>
+                <path d="M16 2v4M8 2v4M3 10h18"/>
+              </svg>
+            </div>
+
+            <p class="kpi-label">Total Bookings</p>
+            <p id="pKpiTotal" class="kpi-value">0</p>
+            <div class="kpi-note">All booking records</div>
+
+          </div>
+
+
+          <div class="kpi-card">
+
+            <div class="kpi-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M12 7v5l3 2"/>
+              </svg>
+            </div>
+
+            <p class="kpi-label">Pending Requests</p>
+            <p id="pKpiPending" class="kpi-value">0</p>
+            <div class="kpi-note">Awaiting your response</div>
+
+          </div>
+
+
+          <div class="kpi-card">
+
+            <div class="kpi-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+                <rect x="3" y="4" width="18" height="17" rx="2"/>
+                <path d="M16 2v4M8 2v4M3 10h18"/>
+                <path d="m9 15 2 2 4-4"/>
+              </svg>
+            </div>
+
+            <p class="kpi-label">Upcoming Ceremonies</p>
+            <p id="pKpiUpcoming" class="kpi-value">0</p>
+            <div class="kpi-note">Confirmed upcoming events</div>
+
+          </div>
+
+
+          <div class="kpi-card">
+
+            <div class="kpi-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="m8 12 2.5 2.5L16 9"/>
+              </svg>
+            </div>
+
+            <p class="kpi-label">Completed Poojas</p>
+            <p id="pKpiCompleted" class="kpi-value">0</p>
+            <div class="kpi-note">Successfully completed</div>
+
+          </div>
+
+
+          <div class="kpi-card">
+
+            <div class="kpi-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+                <rect x="3" y="5" width="18" height="15" rx="2"/>
+                <path d="M3 10h18M7 15h4"/>
+              </svg>
+            </div>
+
+            <p class="kpi-label">Earnings Summary</p>
+            <p id="pKpiEarnings" class="kpi-value">₹0</p>
+            <div class="kpi-note">Prototype earnings summary</div>
+
+          </div>
+
+        </div>
+
+
+        <div class="dash-grid">
+
+          <div class="dash-card">
+
+            <div class="dash-card-header">
+              <h3>Upcoming Ceremonies</h3>
+            </div>
+
+            <p class="dash-card-description">
+              Keep track of your next confirmed ceremonies.
+            </p>
+
+            <div id="overviewUpcomingList">
+              <div class="empty-state">
+                No upcoming ceremonies to display.
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="dash-card">
+
+            <div class="dash-card-header">
+              <h3>Recent Notifications</h3>
+            </div>
+
+            <p class="dash-card-description">
+              Stay updated with recent booking activity.
+            </p>
+
+            <div id="overviewNotificationsList">
+              <div class="empty-state">
+                You are all caught up.
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           2. MY PROFILE
+      ================================================== -->
+
+      <section class="dash-section" data-section="profile">
+
+        <div class="section-heading">
+          <div class="section-eyebrow">Personal Information</div>
+          <h2>My Profile</h2>
+          <p>Manage your priest information and professional details.</p>
+        </div>
+
+        <div class="card profile-form">
+
+          <div class="profile-header">
+
+            <img
+              src="images/priests/raghavan.png"
+              data-fallback="images/priests/karthik.png"
+              alt="Priest profile portrait"
+              class="priest-profile-photo-sm"
+            >
+
+            <div>
+              <h2>Priest Profile</h2>
+              <p>Keep your profile information accurate and up to date.</p>
+            </div>
+
+          </div>
+
+
+          <form id="priestProfileForm" novalidate>
+
+            <div class="grid grid-2">
+
+              <div class="form-group">
+                <label for="pNameInput" class="form-label">Priest Name</label>
+                <input type="text" id="pNameInput" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="pPhoneInput" class="form-label">Contact Phone</label>
+                <input type="text" id="pPhoneInput" class="form-control">
+              </div>
+
+            </div>
+
+
+            <div class="grid grid-2">
+
+              <div class="form-group">
+                <label for="pEmailInput" class="form-label">Contact Email</label>
+                <input type="email" id="pEmailInput" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="pExpInput" class="form-label">Experience</label>
+                <input type="text" id="pExpInput" class="form-control">
+              </div>
+
+            </div>
+
+
+            <div class="grid grid-2">
+
+              <div class="form-group">
+                <label for="pSpecInput" class="form-label">Specializations</label>
+                <input type="text" id="pSpecInput" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="pLangInput" class="form-label">Languages Spoken</label>
+                <input type="text" id="pLangInput" class="form-control">
+              </div>
+
+            </div>
+
+
+            <div class="form-group">
+              <label for="pLocInput" class="form-label">Service Locations</label>
+              <input type="text" id="pLocInput" class="form-control">
+            </div>
+
+
+            <div class="form-group">
+              <label for="pBioInput" class="form-label">Biography</label>
+              <textarea id="pBioInput" rows="4" class="form-control"></textarea>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">
+              Save Profile
+            </button>
+
+          </form>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           3. MY SERVICES
+      ================================================== -->
+
+      <section class="dash-section" data-section="services">
+
+        <div class="section-heading">
+          <div class="section-eyebrow">Your Offerings</div>
+          <h2>My Services</h2>
+          <p>Manage the poojas and ceremonies you offer to devotees.</p>
+        </div>
+
+        <img
+          src="images/pooja/ganapathi-homam.png"
+          data-fallback="images/banners/temple-bg.png"
+          alt="Traditional homam ceremony"
+          class="dash-section-banner"
+        >
+
+
+        <div class="dash-grid">
+
+          <div class="card">
+
+            <h2>My Offered Services</h2>
+
+            <p class="dash-card-description">
+              Your services are displayed here with their current approval status.
+            </p>
+
+            <div class="table-responsive">
+
+              <table class="dash-table" style="min-width:520px;">
+
+                <thead>
+                  <tr>
+                    <th>Pooja</th>
+                    <th>Category</th>
+                    <th>Duration</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+
+                <tbody id="priestServicesBody"></tbody>
+
+              </table>
+
+            </div>
+
+          </div>
+
+
+          <form class="card" id="priestServiceForm" novalidate>
+
+            <h2>Add a New Service</h2>
+
+            <p class="dash-card-description">
+              Submit a new pooja service for administrator review.
+            </p>
+
+            <div class="form-group">
+              <label for="srvNameInput" class="form-label">Service Name</label>
+              <input type="text" id="srvNameInput" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label for="srvCatInput" class="form-label">Category</label>
+              <input type="text" id="srvCatInput" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label for="srvDurInput" class="form-label">Estimated Duration</label>
+              <input type="text" id="srvDurInput" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label for="srvFeeInput" class="form-label">Dakshina / Fee (₹)</label>
+              <input type="number" id="srvFeeInput" class="form-control" min="0" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">
+              Add Service · Pending Approval
+            </button>
+
+          </form>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           4. AVAILABILITY
+      ================================================== -->
+
+      <section class="dash-section" data-section="availability">
+
+        <div class="section-heading">
+          <div class="section-eyebrow">Manage Your Time</div>
+          <h2>Availability</h2>
+          <p>Choose when devotees can request your services.</p>
+        </div>
+
+        <img
+          src="images/banners/kalasham-banner.png"
+          data-fallback="images/banners/temple-bg.png"
+          alt="Sacred kalasham"
+          class="dash-section-banner"
+        >
+
+        <div class="availability-legend">
+
+          <span class="availability-legend">
+            <span class="legend-dot" style="background:#34785C;"></span>
+            Available
+          </span>
+
+          <span class="availability-legend">
+            <span class="legend-dot" style="background:#B77A2D;"></span>
+            Booked
+          </span>
+
+          <span class="availability-legend">
+            <span class="legend-dot" style="background:#A8A09A;"></span>
+            Blocked
+          </span>
+
+        </div>
+
+
+        <div class="dash-grid" style="margin-top:20px;">
+
+          <form class="card" id="addSlotForm" novalidate>
+
+            <h2>Add Available Slot</h2>
+
+            <p class="dash-card-description">
+              Add a date and time when you are available for ceremonies.
+            </p>
+
+            <div class="form-group">
+              <label for="slotDateInput" class="form-label">Available Date</label>
+              <input type="date" id="slotDateInput" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label for="slotTimeInput" class="form-label">Available Time Slot</label>
+
+              <select id="slotTimeInput" class="form-control">
+                <option value="07:00 AM">07:00 AM</option>
+                <option value="09:30 AM">09:30 AM</option>
+                <option value="06:00 PM">06:00 PM</option>
+              </select>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">
+              Add Available Slot
+            </button>
+
+          </form>
+
+
+          <form class="card" id="blockDateForm" novalidate>
+
+            <h2>Block Unavailable Date</h2>
+
+            <p class="dash-card-description">
+              Prevent new booking requests on dates when you are unavailable.
+            </p>
+
+            <div class="form-group">
+              <label for="blockDateInput" class="form-label">Select Date</label>
+              <input type="date" id="blockDateInput" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-secondary btn-block">
+              Block Date
+            </button>
+
+          </form>
+
+        </div>
+
+
+        <div class="dash-grid" style="margin-top:22px;">
+
+          <div class="card">
+
+            <h2>Open Slots</h2>
+
+            <div id="openSlotsList">
+              <div class="empty-state">No available slots added yet.</div>
+            </div>
+
+          </div>
+
+
+          <div class="card">
+
+            <h2>Blocked Dates</h2>
+
+            <div id="blockedDatesList">
+              <div class="empty-state">No blocked dates added yet.</div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           5. BOOKING REQUESTS
+      ================================================== -->
+
+      <section class="dash-section" data-section="requests">
+
+        <div class="section-heading">
+          <div class="section-eyebrow">Devotee Bookings</div>
+          <h2>Booking Requests</h2>
+          <p>Review and manage incoming ceremony requests.</p>
+        </div>
+
+
+        <div class="card">
+
+          <img
+            src="images/pooja/gruhapravesam.png"
+            data-fallback="images/banners/temple-bg.png"
+            alt="Traditional Griha Pravesham ceremony"
+            class="dash-section-banner"
+          >
+
+          <div class="dash-card-header">
+            <div>
+              <h2>Incoming Requests</h2>
+              <p class="dash-card-description">
+                Review booking details and update request status.
+              </p>
+            </div>
+          </div>
+
+
+          <div class="table-responsive">
+
+            <table class="dash-table">
+
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Pooja</th>
+                  <th>Devotee</th>
+                  <th>Date</th>
+                  <th>Location</th>
+                  <th>Booking Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="requestsTableBody"></tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           6. MY SCHEDULE
+      ================================================== -->
+
+      <section class="dash-section" data-section="schedule">
+
+        <div class="section-heading">
+          <div class="section-eyebrow">Your Calendar</div>
+          <h2>My Schedule</h2>
+          <p>View your confirmed upcoming ceremonies.</p>
+        </div>
+
+
+        <div class="card">
+
+          <img
+            src="images/pooja/satyanarayana-pooja.png"
+            data-fallback="images/banners/temple-bg.png"
+            alt="Satyanarayana pooja ceremony"
+            class="dash-section-banner"
+          >
+
+          <h2>Upcoming Ceremonies</h2>
+
+          <p class="dash-card-description">
+            Your accepted bookings and scheduled poojas appear here.
+          </p>
+
+
+          <div class="table-responsive">
+
+            <table class="dash-table">
+
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Pooja</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Location</th>
+                  <th>Booking Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="scheduleTableBody"></tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           7. COMPLETED POOJAS
+      ================================================== -->
+
+      <section class="dash-section" data-section="completed">
+
+        <div class="section-heading">
+          <div class="section-eyebrow">Your Service History</div>
+          <h2>Completed Poojas</h2>
+          <p>Review your previously completed ceremonies.</p>
+        </div>
+
+
+        <div class="card">
+
+          <img
+            src="images/pooja/festival-lakshmi.png"
+            data-fallback="images/banners/temple-bg.png"
+            alt="Lakshmi pooja ceremony"
+            class="dash-section-banner"
+          >
+
+          <h2>Completed Ceremony Records</h2>
+
+          <p class="dash-card-description">
+            A history of ceremonies marked as completed.
+          </p>
+
+
+          <div class="table-responsive">
+
+            <table class="dash-table">
+
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Pooja</th>
+                  <th>Date</th>
+                  <th>Location</th>
+                  <th>Booking Status</th>
+                </tr>
+              </thead>
+
+              <tbody id="completedTableBody"></tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           8. EARNINGS
+      ================================================== -->
+
+      <section class="dash-section" data-section="earnings">
+
+        <div class="section-heading">
+          <div class="section-eyebrow">Financial Overview</div>
+          <h2>Earnings</h2>
+          <p>Track your ceremony fees and payment records.</p>
+        </div>
+
+
+        <div class="card">
+
+          <img
+            src="images/pooja/marriage-mandapam.png"
+            data-fallback="images/banners/temple-bg.png"
+            alt="Traditional wedding ceremony mandapam"
+            class="dash-section-banner"
+          >
+
+          <h2>Payment Records</h2>
+
+          <p class="dash-card-description">
+            Prototype note: Figures shown are from sample/local prototype records only.
+            Actual payment information requires payment integration.
+          </p>
+
+
+          <div class="table-responsive">
+
+            <table class="dash-table">
+
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Pooja</th>
+                  <th>Amount</th>
+                  <th>Payment Status</th>
+                </tr>
+              </thead>
+
+              <tbody id="earningsTableBody"></tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           9. NOTIFICATIONS
+      ================================================== -->
+
+      <section class="dash-section" data-section="notifications">
+
+        <div class="section-heading">
+          <div class="section-eyebrow">Updates & Alerts</div>
+          <h2>Notifications</h2>
+          <p>Stay informed about bookings, schedules, and account activity.</p>
+        </div>
+
+
+        <img
+          src="images/banners/corridor-banner.png"
+          data-fallback="images/banners/temple-bg.png"
+          alt="Traditional temple corridor"
+          class="dash-section-banner"
+        >
+
+
+        <div id="priestNotifsList" class="grid" style="gap:12px;">
+
+          <div class="empty-state">
+            No notifications to display.
+          </div>
+
+        </div>
+
+      </section>
+
+
+    </main>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     EXISTING JAVASCRIPT CONNECTIONS
+====================================================== -->
+
+<script src="js/theme.js"></script>
+<script src="js/direction.js"></script>
+<script src="js/section-motion.js"></script>
+<script src="js/priest.js"></script>
+
+
+<!-- =====================================================
+     DASHBOARD NAVIGATION AND MOBILE SIDEBAR
+====================================================== -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const sidebar = document.getElementById("dashSidebar");
+  const backdrop = document.getElementById("dashBackdrop");
+  const mobileToggle = document.getElementById("dashMobileToggle");
+
+  const navButtons = document.querySelectorAll(".dash-nav-btn");
+  const sections = document.querySelectorAll(".dash-section");
+
+  function closeSidebar() {
+    sidebar?.classList.remove("is-open");
+    backdrop?.classList.remove("is-visible");
+  }
+
+  mobileToggle?.addEventListener("click", function () {
+    sidebar?.classList.toggle("is-open");
+    backdrop?.classList.toggle("is-visible");
+  });
+
+  backdrop?.addEventListener("click", closeSidebar);
+
+  navButtons.forEach(function (button) {
+
+    button.addEventListener("click", function () {
+
+      const target = button.dataset.target;
+
+      if (!target) return;
+
+      navButtons.forEach(function (item) {
+        item.classList.remove("is-active");
+      });
+
+      button.classList.add("is-active");
+
+      sections.forEach(function (section) {
+
+        section.classList.toggle(
+          "is-active",
+          section.dataset.section === target
+        );
+
+      });
+
+      closeSidebar();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    });
+
+  });
+
+
+  /* Image fallback */
+
+  document.querySelectorAll("img[data-fallback]").forEach(function (img) {
+
+    img.addEventListener("error", function () {
+
+      if (img.dataset.fallback && img.src !== new URL(img.dataset.fallback, window.location.href).href) {
+
+        img.src = img.dataset.fallback;
+
+      }
+
+    });
+
+  });
+
+});
+</script>
+
+</body>
+</html>
