@@ -1325,3 +1325,248 @@ h2 {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ==========================================================================
+   SACRED SANKALPAM - GLOBAL THEME AND RTL FIXES
+   Add this block at the END of css/style.css
+   ========================================================================== */
+
+/* 1. Consistent theme colors */
+:root {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* 2. Light theme components use shared variables */
+.site-header {
+  background: var(--bg-page);
+  background: color-mix(in srgb, var(--bg-page) 96%, transparent);
+}
+
+.brand-name,
+.nav-link,
+.section-title,
+.card h3 {
+  color: var(--text-primary);
+}
+
+.brand-name {
+  color: var(--color-primary);
+}
+
+.nav-link:hover,
+.nav-link.active,
+.section-eyebrow {
+  color: var(--color-primary);
+}
+
+.card {
+  background: var(--bg-surface);
+  border-color: var(--border-color);
+}
+
+.form-control {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+.table-wrap {
+  background: var(--bg-surface);
+  border-color: var(--border-color);
+}
+
+.dash-table td {
+  color: var(--text-primary);
+}
+
+/* 3. Complete dark theme */
+[data-theme="dark"] body {
+  background: var(--bg-page);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .site-header {
+  background: rgba(33, 25, 26, 0.96);
+  border-bottom-color: var(--border-strong);
+}
+
+[data-theme="dark"] .brand-name,
+[data-theme="dark"] .section-title,
+[data-theme="dark"] .card h3,
+[data-theme="dark"] .section-eyebrow {
+  color: #E6BD7B;
+}
+
+[data-theme="dark"] .brand-tagline {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .nav-link {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .nav-link:hover,
+[data-theme="dark"] .nav-link.active {
+  color: #E6BD7B;
+}
+
+[data-theme="dark"] .card {
+  background: var(--bg-surface);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .card p,
+[data-theme="dark"] .section-subtitle,
+[data-theme="dark"] .priest-card p {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .form-control {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+[data-theme="dark"] .form-control::placeholder {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .form-control option {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .form-label {
+  color: #E6BD7B;
+}
+
+[data-theme="dark"] .table-wrap {
+  background: var(--bg-surface);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .dash-table th {
+  color: #F5EDE2;
+  background: #493238;
+  border-bottom-color: #E6BD7B;
+}
+
+[data-theme="dark"] .dash-table td {
+  color: var(--text-primary);
+  border-bottom-color: var(--border-color);
+}
+
+[data-theme="dark"] .icon-toggle-btn,
+[data-theme="dark"] .dir-toggle-btn,
+[data-theme="dark"] .mobile-menu-btn {
+  background: var(--bg-surface);
+  color: #E6BD7B;
+  border-color: var(--border-strong);
+}
+
+[data-theme="dark"] .btn-secondary {
+  color: #E6BD7B;
+  background: var(--bg-surface);
+  border-color: #E6BD7B;
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+  color: #21191A;
+  background: #E6BD7B;
+}
+
+[data-theme="dark"] .section-subtle {
+  background: linear-gradient(135deg, var(--bg-surface), var(--bg-subtle));
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .page-graphic-box {
+  background: var(--bg-subtle);
+  border-color: var(--border-strong);
+}
+
+[data-theme="dark"] .badge-gold {
+  color: #F5E3BD;
+  border-color: var(--border-strong);
+}
+
+/* 4. RTL support */
+html[dir="rtl"],
+html[dir="rtl"] body {
+  direction: rtl;
+}
+
+[dir="rtl"] body {
+  text-align: right;
+}
+
+[dir="rtl"] .section-header:not(.centered) {
+  text-align: right;
+}
+
+[dir="rtl"] .section-header.centered {
+  text-align: center;
+}
+
+[dir="rtl"] .dash-table th,
+[dir="rtl"] .dash-table td {
+  text-align: right;
+}
+
+[dir="rtl"] .footer-bottom {
+  direction: rtl;
+}
+
+[dir="rtl"] .footer-links a:hover {
+  transform: translateX(-3px);
+}
+
+[dir="rtl"] .site-footer::before {
+  right: auto;
+  left: -110px;
+}
+
+[dir="rtl"] .nav-link::after {
+  left: 0;
+  right: 0;
+  transform-origin: right center;
+}
+
+[dir="rtl"] input,
+[dir="rtl"] textarea,
+[dir="rtl"] select {
+  text-align: right;
+}
+
+/* 5. Mobile navigation in both themes */
+@media (max-width: 768px) {
+  .nav-menu {
+    inset-inline: 0;
+    left: auto;
+    right: auto;
+    background: var(--bg-page);
+    border-color: var(--border-color);
+  }
+
+  [data-theme="dark"] .nav-menu {
+    background: var(--bg-page);
+    border-color: var(--border-strong);
+  }
+
+  [dir="rtl"] .nav-menu {
+    text-align: right;
+  }
+}
+
+/* 6. Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-theme],
+  [dir] {
+    transition: none;
+  }
+}

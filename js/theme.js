@@ -1,80 +1,59 @@
-```javascript
+
 /* ==========================================================================
    Centralized Theme Manager (js/theme.js)
    Manages Light and Dark mode across all Sacred Sankalpam pages.
-   Features:
-   - Saves the selected theme using localStorage.
-   - Applies the saved theme when a page loads.
-   - Supports theme toggle buttons across all pages.
-   - Updates accessibility attributes.
-   - Provides image fallback handling.
    ========================================================================== */
 
 (function (window, document) {
   "use strict";
 
   const THEME_STORAGE_KEY = "sankalpam_theme";
+  const BUTTON_SELECTOR = "[data-theme-toggle], #themeToggleBtn";
 
-  /* ------------------------------------------------------------------------
-     Read the saved theme
-     ------------------------------------------------------------------------ */
+  /* Read saved theme */
 
   function readSavedTheme() {
     try {
-      const value = window.localStorage.getItem(THEME_STORAGE_KEY);
-      return value === "dark" ? "dark" : "light";
-    } catch (err) {
+      return window.localStorage.getItem(THEME_STORAGE_KEY) === "dark"
+        ? "dark"
+        : "light";
+    } catch (error) {
       return "light";
     }
   }
 
-  /* ------------------------------------------------------------------------
-     Save the selected theme
-     ------------------------------------------------------------------------ */
+  /* Save theme */
 
   function writeSavedTheme(theme) {
     try {
       window.localStorage.setItem(THEME_STORAGE_KEY, theme);
-    } catch (err) {
-      // Ignore storage errors in restricted browser contexts.
+    } catch (error) {
+      // Storage may be unavailable in restricted browser contexts.
     }
   }
 
-  /* ------------------------------------------------------------------------
-     Update theme toggle button accessibility attributes
-     ------------------------------------------------------------------------ */
+  /* Synchronize theme button accessibility */
 
   function syncThemeButtons(theme) {
     const isDark = theme === "dark";
-
     const label = isDark
       ? "Switch to light mode"
       : "Switch to dark mode";
 
-    const buttons = document.querySelectorAll(
-      "[data-theme-toggle], #themeToggleBtn"
-    );
-
-    buttons.forEach(function (btn) {
-      btn.setAttribute("aria-pressed", String(isDark));
-      btn.setAttribute("aria-label", label);
-      btn.setAttribute("title", label);
+    document.querySelectorAll(BUTTON_SELECTOR).forEach(function (button) {
+      button.setAttribute("aria-pressed", String(isDark));
+      button.setAttribute("aria-label", label);
+      button.setAttribute("title", label);
     });
   }
 
-  /* ------------------------------------------------------------------------
-     Apply a theme
-     ------------------------------------------------------------------------ */
+  /* Apply theme */
 
   function applyTheme(theme) {
     const normalized = theme === "dark" ? "dark" : "light";
 
-    document.documentElement.setAttribute(
-      "data-theme",
-      normalized
-    );
-
-    document.documentElement.setAttribute("lang", "en");
+    document.documentElement.setAttribute("data-theme", normalized);
+    document.documentElement.style.colorScheme = normalized;
 
     writeSavedTheme(normalized);
     syncThemeButtons(normalized);
@@ -82,57 +61,45 @@
     return normalized;
   }
 
-  /* ------------------------------------------------------------------------
-     Toggle between light and dark mode
-     ------------------------------------------------------------------------ */
+  /* Toggle theme */
 
   function toggleTheme() {
-    const current = document.documentElement.getAttribute(
-      "data-theme"
-    );
+    const current =
+      document.documentElement.getAttribute("data-theme") ||
+      readSavedTheme();
 
-    return applyTheme(
-      current === "dark" ? "light" : "dark"
-    );
+    return applyTheme(current === "dark" ? "light" : "dark");
   }
 
-  /* ------------------------------------------------------------------------
-     Bind theme toggle buttons
-     Prevent duplicate event listeners.
-     ------------------------------------------------------------------------ */
+  /* Event delegation: supports buttons on every page,
+     including buttons added dynamically. */
 
   function bindThemeToggles() {
-    const buttons = document.querySelectorAll(
-      "[data-theme-toggle], #themeToggleBtn"
-    );
+    if (document.documentElement.getAttribute("data-theme-events-bound") === "true") {
+      syncThemeButtons(readSavedTheme());
+      return;
+    }
 
-    buttons.forEach(function (btn) {
-      if (btn.getAttribute("data-theme-bound") === "true") {
+    document.documentElement.setAttribute("data-theme-events-bound", "true");
+
+    document.addEventListener("click", function (event) {
+      const button = event.target.closest(BUTTON_SELECTOR);
+
+      if (!button) {
         return;
       }
 
-      btn.setAttribute("data-theme-bound", "true");
-
-      btn.addEventListener("click", function () {
-        toggleTheme();
-      });
+      event.preventDefault();
+      toggleTheme();
     });
 
-    // Keep button labels synchronized with the active theme.
-    syncThemeButtons(
-      document.documentElement.getAttribute("data-theme") || "light"
-    );
+    syncThemeButtons(readSavedTheme());
   }
 
-  /* ------------------------------------------------------------------------
-     Image fallback handling
-     If the main image fails, use its data-fallback image.
-     ------------------------------------------------------------------------ */
+  /* Image fallback handling */
 
   function applyImageFallbacks() {
-    const images = document.querySelectorAll("img[data-fallback]");
-
-    images.forEach(function (img) {
+    document.querySelectorAll("img[data-fallback]").forEach(function (img) {
       if (img.getAttribute("data-fallback-bound") === "true") {
         return;
       }
@@ -142,12 +109,7 @@
       img.addEventListener("error", function () {
         const fallbackSrc = img.getAttribute("data-fallback");
 
-        if (!fallbackSrc) {
-          return;
-        }
-
-        // Prevent repeated fallback attempts.
-        if (img.getAttribute("src") === fallbackSrc) {
+        if (!fallbackSrc || img.getAttribute("src") === fallbackSrc) {
           return;
         }
 
@@ -156,9 +118,7 @@
     });
   }
 
-  /* ------------------------------------------------------------------------
-     Initialize theme-related page functionality
-     ------------------------------------------------------------------------ */
+  /* Initialize */
 
   function initializeThemeManager() {
     applyTheme(readSavedTheme());
@@ -166,10 +126,10 @@
     applyImageFallbacks();
   }
 
-  // Apply the saved theme immediately to reduce unwanted theme flashing.
+  /* Apply saved theme as early as possible */
+
   applyTheme(readSavedTheme());
 
-  // Support both normal page loading and scripts loaded after DOM readiness.
   if (document.readyState === "loading") {
     document.addEventListener(
       "DOMContentLoaded",
@@ -180,10 +140,15 @@
     initializeThemeManager();
   }
 
-  /* ------------------------------------------------------------------------
-     Public API
-     Preserve compatibility with other JavaScript files.
-     ------------------------------------------------------------------------ */
+  /* Synchronize theme when changed in another browser tab */
+
+  window.addEventListener("storage", function (event) {
+    if (event.key === THEME_STORAGE_KEY) {
+      applyTheme(event.newValue === "dark" ? "dark" : "light");
+    }
+  });
+
+  /* Public API: preserve compatibility */
 
   window.SankalpamTheme = {
     getTheme: readSavedTheme,
@@ -192,4 +157,3 @@
   };
 
 })(window, document);
-```

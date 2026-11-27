@@ -1,17 +1,7 @@
-```javascript
+
 /* ==========================================================================
    Centralized Text Direction Manager (js/direction.js)
-
-   Manages Left-to-Right (LTR) and Right-to-Left (RTL) layout direction
-   across all Sacred Sankalpam pages.
-
-   Features:
-   - Saves the selected direction using localStorage.
-   - Restores the saved direction when a page loads.
-   - Supports direction toggle buttons across all pages.
-   - Updates accessibility attributes.
-   - Preserves the existing universal direction symbol (⇄).
-   - Exposes a public API for other JavaScript files.
+   Manages LTR and RTL layout direction across all Sacred Sankalpam pages.
    ========================================================================== */
 
 (function (window, document) {
@@ -19,66 +9,53 @@
 
   const DIR_STORAGE_KEY = "sankalpam_dir";
   const DIR_SYMBOL = "⇄";
+  const BUTTON_SELECTOR = "[data-dir-toggle], #dirToggleBtn";
 
-  /* ------------------------------------------------------------------------
-     Read saved direction
-     ------------------------------------------------------------------------ */
+  /* Read saved direction */
 
   function readSavedDirection() {
     try {
-      const value = window.localStorage.getItem(DIR_STORAGE_KEY);
-
-      return value === "rtl" ? "rtl" : "ltr";
-    } catch (err) {
+      return window.localStorage.getItem(DIR_STORAGE_KEY) === "rtl"
+        ? "rtl"
+        : "ltr";
+    } catch (error) {
       return "ltr";
     }
   }
 
-  /* ------------------------------------------------------------------------
-     Save selected direction
-     ------------------------------------------------------------------------ */
+  /* Save direction */
 
   function writeSavedDirection(dir) {
     try {
       window.localStorage.setItem(DIR_STORAGE_KEY, dir);
-    } catch (err) {
-      // Ignore storage errors in restricted browser contexts.
+    } catch (error) {
+      // Storage may be unavailable in restricted browser contexts.
     }
   }
 
-  /* ------------------------------------------------------------------------
-     Synchronize direction toggle buttons
-     ------------------------------------------------------------------------ */
+  /* Synchronize direction buttons */
 
   function syncDirectionButtons(dir) {
     const isRtl = dir === "rtl";
 
-    const nextLabel = isRtl
+    const label = isRtl
       ? "Switch layout to Left-to-Right (LTR)"
       : "Switch layout to Right-to-Left (RTL)";
 
-    const buttons = document.querySelectorAll(
-      "[data-dir-toggle], #dirToggleBtn"
-    );
-
-    buttons.forEach(function (btn) {
-      btn.textContent = DIR_SYMBOL;
-
-      btn.setAttribute("aria-pressed", String(isRtl));
-      btn.setAttribute("aria-label", nextLabel);
-      btn.setAttribute("title", nextLabel);
+    document.querySelectorAll(BUTTON_SELECTOR).forEach(function (button) {
+      button.textContent = DIR_SYMBOL;
+      button.setAttribute("aria-pressed", String(isRtl));
+      button.setAttribute("aria-label", label);
+      button.setAttribute("title", label);
     });
   }
 
-  /* ------------------------------------------------------------------------
-     Apply direction
-     ------------------------------------------------------------------------ */
+  /* Apply direction */
 
   function applyDirection(dir) {
     const normalized = dir === "rtl" ? "rtl" : "ltr";
 
     document.documentElement.setAttribute("dir", normalized);
-    document.documentElement.setAttribute("lang", "en");
 
     writeSavedDirection(normalized);
     syncDirectionButtons(normalized);
@@ -86,59 +63,53 @@
     return normalized;
   }
 
-  /* ------------------------------------------------------------------------
-     Toggle between LTR and RTL
-     ------------------------------------------------------------------------ */
+  /* Toggle direction */
 
   function toggleDirection() {
-    const current = document.documentElement.getAttribute("dir");
+    const current =
+      document.documentElement.getAttribute("dir") ||
+      readSavedDirection();
 
-    return applyDirection(
-      current === "rtl" ? "ltr" : "rtl"
-    );
+    return applyDirection(current === "rtl" ? "ltr" : "rtl");
   }
 
-  /* ------------------------------------------------------------------------
-     Bind direction toggle buttons
-     Prevent duplicate event listeners.
-     ------------------------------------------------------------------------ */
+  /* Bind buttons using event delegation */
 
   function bindDirectionToggles() {
-    const buttons = document.querySelectorAll(
-      "[data-dir-toggle], #dirToggleBtn"
-    );
+    if (
+      document.documentElement.getAttribute("data-dir-events-bound") === "true"
+    ) {
+      syncDirectionButtons(readSavedDirection());
+      return;
+    }
 
-    buttons.forEach(function (btn) {
-      if (btn.getAttribute("data-dir-bound") === "true") {
+    document.documentElement.setAttribute("data-dir-events-bound", "true");
+
+    document.addEventListener("click", function (event) {
+      const button = event.target.closest(BUTTON_SELECTOR);
+
+      if (!button) {
         return;
       }
 
-      btn.setAttribute("data-dir-bound", "true");
-
-      btn.addEventListener("click", function () {
-        toggleDirection();
-      });
+      event.preventDefault();
+      toggleDirection();
     });
 
-    // Keep all direction buttons synchronized.
-    syncDirectionButtons(
-      document.documentElement.getAttribute("dir") || "ltr"
-    );
+    syncDirectionButtons(readSavedDirection());
   }
 
-  /* ------------------------------------------------------------------------
-     Initialize direction manager
-     ------------------------------------------------------------------------ */
+  /* Initialize direction manager */
 
   function initializeDirectionManager() {
     applyDirection(readSavedDirection());
     bindDirectionToggles();
   }
 
-  // Apply the saved direction immediately on page load.
+  /* Apply saved direction immediately */
+
   applyDirection(readSavedDirection());
 
-  // Support normal page loading and scripts loaded after DOM readiness.
   if (document.readyState === "loading") {
     document.addEventListener(
       "DOMContentLoaded",
@@ -149,10 +120,15 @@
     initializeDirectionManager();
   }
 
-  /* ------------------------------------------------------------------------
-     Public API
-     Preserve compatibility with other JavaScript files.
-     ------------------------------------------------------------------------ */
+  /* Synchronize direction across browser tabs */
+
+  window.addEventListener("storage", function (event) {
+    if (event.key === DIR_STORAGE_KEY) {
+      applyDirection(event.newValue === "rtl" ? "rtl" : "ltr");
+    }
+  });
+
+  /* Public API: preserve compatibility */
 
   window.SankalpamDir = {
     getDir: readSavedDirection,
@@ -161,4 +137,3 @@
   };
 
 })(window, document);
-```
