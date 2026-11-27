@@ -2,6 +2,14 @@
 /* ==========================================================================
    Centralized Text Direction Manager (js/direction.js)
    Manages LTR and RTL layout direction across all Sacred Sankalpam pages.
+
+   Features:
+   - LTR and RTL direction switching
+   - Saves direction preference in localStorage
+   - Applies saved direction automatically on every page
+   - Supports dynamically added direction buttons
+   - Synchronizes buttons across browser tabs
+   - Preserves the existing public API
    ========================================================================== */
 
 (function (window, document) {
@@ -11,7 +19,9 @@
   const DIR_SYMBOL = "⇄";
   const BUTTON_SELECTOR = "[data-dir-toggle], #dirToggleBtn";
 
-  /* Read saved direction */
+  /* ----------------------------------------------------------
+     Read saved direction
+  ---------------------------------------------------------- */
 
   function readSavedDirection() {
     try {
@@ -23,7 +33,9 @@
     }
   }
 
-  /* Save direction */
+  /* ----------------------------------------------------------
+     Save direction
+  ---------------------------------------------------------- */
 
   function writeSavedDirection(dir) {
     try {
@@ -33,7 +45,9 @@
     }
   }
 
-  /* Synchronize direction buttons */
+  /* ----------------------------------------------------------
+     Synchronize direction buttons
+  ---------------------------------------------------------- */
 
   function syncDirectionButtons(dir) {
     const isRtl = dir === "rtl";
@@ -50,12 +64,15 @@
     });
   }
 
-  /* Apply direction */
+  /* ----------------------------------------------------------
+     Apply direction
+  ---------------------------------------------------------- */
 
   function applyDirection(dir) {
     const normalized = dir === "rtl" ? "rtl" : "ltr";
 
     document.documentElement.setAttribute("dir", normalized);
+    document.documentElement.setAttribute("lang", "en");
 
     writeSavedDirection(normalized);
     syncDirectionButtons(normalized);
@@ -63,7 +80,9 @@
     return normalized;
   }
 
-  /* Toggle direction */
+  /* ----------------------------------------------------------
+     Toggle direction
+  ---------------------------------------------------------- */
 
   function toggleDirection() {
     const current =
@@ -73,20 +92,30 @@
     return applyDirection(current === "rtl" ? "ltr" : "rtl");
   }
 
-  /* Bind buttons using event delegation */
+  /* ----------------------------------------------------------
+     Bind direction buttons using event delegation
+  ---------------------------------------------------------- */
 
   function bindDirectionToggles() {
-    if (
-      document.documentElement.getAttribute("data-dir-events-bound") === "true"
-    ) {
+    const root = document.documentElement;
+
+    // Prevent duplicate click listeners.
+    if (root.getAttribute("data-dir-events-bound") === "true") {
       syncDirectionButtons(readSavedDirection());
       return;
     }
 
-    document.documentElement.setAttribute("data-dir-events-bound", "true");
+    root.setAttribute("data-dir-events-bound", "true");
 
     document.addEventListener("click", function (event) {
-      const button = event.target.closest(BUTTON_SELECTOR);
+      const target = event.target;
+
+      // Safely check whether the click target supports closest().
+      if (!target || typeof target.closest !== "function") {
+        return;
+      }
+
+      const button = target.closest(BUTTON_SELECTOR);
 
       if (!button) {
         return;
@@ -99,14 +128,18 @@
     syncDirectionButtons(readSavedDirection());
   }
 
-  /* Initialize direction manager */
+  /* ----------------------------------------------------------
+     Initialize direction manager
+  ---------------------------------------------------------- */
 
   function initializeDirectionManager() {
     applyDirection(readSavedDirection());
     bindDirectionToggles();
   }
 
-  /* Apply saved direction immediately */
+  /* ----------------------------------------------------------
+     Apply saved direction as early as possible
+  ---------------------------------------------------------- */
 
   applyDirection(readSavedDirection());
 
@@ -120,7 +153,9 @@
     initializeDirectionManager();
   }
 
-  /* Synchronize direction across browser tabs */
+  /* ----------------------------------------------------------
+     Synchronize direction across browser tabs
+  ---------------------------------------------------------- */
 
   window.addEventListener("storage", function (event) {
     if (event.key === DIR_STORAGE_KEY) {
@@ -128,7 +163,10 @@
     }
   });
 
-  /* Public API: preserve compatibility */
+  /* ----------------------------------------------------------
+     Public API
+     Preserve compatibility with existing website scripts.
+  ---------------------------------------------------------- */
 
   window.SankalpamDir = {
     getDir: readSavedDirection,
