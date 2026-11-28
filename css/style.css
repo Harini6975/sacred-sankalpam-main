@@ -1570,3 +1570,209 @@ html[dir="rtl"] body {
     transition: none;
   }
 }
+
+/* =========================================================
+   UNIFIED SITE FOOTER (Sacred Sankalpam)
+   ========================================================= */
+.ss-footer {
+  padding: 60px 0 24px;
+  background-color: #35151E;
+  color: #F5EAD8;
+  border-top: 2px solid #C69A4A;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+.ss-footer-grid {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr 1fr 1.15fr;
+  gap: 36px;
+}
+
+.ss-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  text-decoration: none;
+}
+
+.ss-brand-symbol {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  display: block;
+}
+
+.ss-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.ss-brand-name {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.38rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #F3D28F;
+}
+
+.ss-brand-tagline {
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: #E8D9C8;
+}
+
+.ss-footer-desc {
+  color: #E8D9C8;
+  font-size: 0.9rem;
+  line-height: 1.75;
+  margin: 0 0 20px;
+  max-width: 310px;
+}
+
+/* Social Square Buttons */
+.ss-social-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ss-social-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 6px;
+  border: 1px solid rgba(198, 154, 74, 0.45);
+  background: rgba(255, 255, 255, 0.04);
+  color: #F5EAD8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.ss-social-btn:hover {
+  background-color: #C69A4A;
+  border-color: #C69A4A;
+  color: #35151E;
+  transform: translateY(-2px);
+}
+
+/* Column Headings with Short Gold Underline */
+.ss-footer-title {
+  position: relative;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.38rem;
+  font-weight: 700;
+  color: #FFFDF8;
+  margin: 0 0 22px;
+  padding-bottom: 10px;
+}
+
+.ss-footer-title::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  bottom: 0;
+  width: 34px;
+  height: 2.5px;
+  background-color: #C69A4A;
+  border-radius: 2px;
+}
+
+/* Links & Contact Lists */
+.ss-footer-links,
+.ss-footer-contact {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.ss-footer-links a {
+  color: #E8D9C8;
+  text-decoration: none;
+  font-size: 0.92rem;
+  transition: color 0.2s ease;
+}
+
+.ss-footer-links a:hover {
+  color: #F3D28F;
+}
+
+.ss-footer-contact li {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  color: #E8D9C8;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.ss-footer-contact svg {
+  color: #C69A4A;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+/* Bottom Bar */
+.ss-footer-bottom {
+  margin-top: 42px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(198, 154, 74, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 0.85rem;
+  color: #E8D9C8;
+}
+
+.ss-gold-highlight {
+  color: #E7C27B;
+  font-weight: 600;
+}
+
+.ss-footer-legal {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.ss-footer-legal a {
+  color: #E8D9C8;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.2s ease;
+}
+
+.ss-footer-legal a:hover {
+  color: #F3D28F;
+}
+
+/* Dark Theme Consistency */
+[data-theme="dark"] .ss-footer {
+  background-color: #211518;
+  border-top-color: rgba(230, 184, 94, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .ss-footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .ss-footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ss-footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
