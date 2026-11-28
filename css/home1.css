@@ -1,0 +1,664 @@
+/*
+  SACRED SANKALPAM — HOME 1 CLASSIC REDESIGN
+  Scope: main.main-content only.
+  The public header and footer are intentionally not targeted by this stylesheet.
+*/
+
+.main-content {
+  --home1-maroon: #762333;
+  --home1-maroon-deep: #421923;
+  --home1-gold: #c69a4a;
+  --home1-cream: #fbf8f1;
+  --home1-paper: #fffdf8;
+  --home1-ink: #29211e;
+  --home1-muted: #6e6158;
+  --home1-line: #eadfcd;
+  color: var(--home1-ink);
+  background: var(--home1-cream);
+}
+
+.main-content .ss-section {
+  padding: clamp(3.75rem, 7vw, 5.75rem) 0;
+}
+
+.main-content .ss-section-alt {
+  background: #f3ede2;
+}
+
+.main-content .ss-section-heading {
+  max-width: 720px;
+  margin: 0 auto clamp(2rem, 4vw, 2.8rem);
+}
+
+.main-content .ss-section-heading .ss-eyebrow,
+.main-content .ss-planning > div > .ss-eyebrow {
+  color: var(--home1-gold);
+  letter-spacing: .18em;
+}
+
+.main-content .ss-section-heading h2,
+.main-content .ss-planning h2 {
+  color: var(--home1-maroon);
+  font-size: clamp(2.1rem, 3.5vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -.025em;
+}
+
+.main-content .ss-section-heading p {
+  max-width: 640px;
+  margin-inline: auto;
+  color: var(--home1-muted);
+  font-size: .98rem;
+  line-height: 1.8;
+}
+
+/* Split hero */
+.main-content .ss-hero {
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(3.8rem, 7vw, 6.5rem) 0;
+  color: var(--home1-ink);
+  background:
+    radial-gradient(circle at 8% 12%, rgba(198,154,74,.12), transparent 30%),
+    linear-gradient(135deg, #fffdf8 0%, #f7f0e4 100%);
+}
+
+.main-content .ss-hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 390px;
+  height: 390px;
+  right: -180px;
+  top: -190px;
+  border: 1px solid rgba(198,154,74,.25);
+  border-radius: 50%;
+}
+
+.main-content .ss-hero-grid {
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, .95fr);
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+.main-content .ss-hero-grid > div:first-child {
+  max-width: 650px;
+}
+
+.main-content .ss-hero .ss-eyebrow {
+  color: var(--home1-maroon);
+  background: rgba(198,154,74,.15);
+  border: 1px solid rgba(198,154,74,.32);
+  border-radius: 999px;
+  padding: .55rem .9rem;
+  font-size: .7rem;
+  letter-spacing: .16em;
+}
+
+.main-content .ss-hero h1 {
+  max-width: 680px;
+  margin: 1.35rem 0 1.1rem;
+  color: var(--home1-maroon-deep);
+  font-size: clamp(2.65rem, 5.2vw, 4.65rem);
+  line-height: 1.02;
+  letter-spacing: -.035em;
+}
+
+.main-content .ss-hero p {
+  max-width: 570px;
+  margin-bottom: 1.8rem;
+  color: var(--home1-muted);
+  font-size: 1.02rem;
+  line-height: 1.9;
+}
+
+.main-content .ss-hero-image {
+  display: block;
+  width: 100%;
+  height: clamp(330px, 39vw, 490px);
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+  border: 7px solid rgba(255,253,248,.9);
+  border-radius: 190px 190px 16px 16px;
+  box-shadow: 0 25px 65px rgba(66,25,35,.18);
+}
+
+.main-content .ss-actions {
+  gap: .8rem;
+}
+
+.main-content .ss-btn {
+  min-height: 48px;
+  padding: .85rem 1.35rem;
+  border-radius: 6px;
+  font-size: .88rem;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.main-content .ss-btn-primary {
+  background: var(--home1-maroon);
+  color: #fffdf8;
+  border: 1px solid var(--home1-maroon);
+  box-shadow: 0 8px 20px rgba(118,35,51,.16);
+}
+
+.main-content .ss-btn-primary:hover,
+.main-content .ss-btn-primary:focus-visible {
+  background: var(--home1-maroon-deep);
+  color: #fffdf8;
+  box-shadow: 0 11px 24px rgba(66,25,35,.2);
+}
+
+.main-content .ss-btn-outline {
+  color: var(--home1-maroon);
+  background: transparent;
+  border: 1px solid rgba(118,35,51,.45);
+}
+
+.main-content .ss-btn-outline:hover,
+.main-content .ss-btn-outline:focus-visible {
+  color: var(--home1-maroon-deep);
+  background: rgba(198,154,74,.13);
+  border-color: var(--home1-gold);
+}
+
+/* Pooja service cards */
+.main-content .ss-grid {
+  align-items: stretch;
+  gap: clamp(1.1rem, 2.3vw, 1.65rem);
+}
+
+.main-content .ss-card {
+  border: 1px solid var(--home1-line);
+  border-radius: 12px;
+  background: var(--home1-paper);
+  box-shadow: 0 9px 28px rgba(66,25,35,.055);
+}
+
+.main-content .ss-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 38px rgba(66,25,35,.11);
+}
+
+.main-content .ss-card-image {
+  height: 245px;
+  object-fit: cover;
+  transition: transform .45s ease;
+}
+
+.main-content .ss-card:hover .ss-card-image {
+  transform: scale(1.025);
+}
+
+.main-content .ss-card-body {
+  padding: clamp(1.25rem, 2.2vw, 1.7rem);
+}
+
+.main-content .ss-label {
+  padding: .4rem .7rem;
+  border-radius: 999px;
+  color: var(--home1-maroon);
+  background: #f5ead5;
+  font-size: .68rem;
+  letter-spacing: .04em;
+}
+
+.main-content .ss-card h3 {
+  margin-bottom: .65rem;
+  color: var(--home1-maroon);
+  font-size: 1.65rem;
+}
+
+.main-content .ss-card p,
+.main-content .ss-process-item p,
+.main-content .ss-benefit p,
+.main-content .ss-faq p {
+  color: var(--home1-muted);
+  line-height: 1.78;
+}
+
+.main-content .ss-card .ss-actions {
+  padding-top: 1.25rem;
+}
+
+.main-content .ss-card .ss-btn-primary,
+.main-content .ss-card .ss-actions a.ss-btn-primary {
+  color: #fffdf8 !important;
+  background: var(--home1-maroon) !important;
+  border-color: var(--home1-maroon) !important;
+}
+
+.main-content .ss-card .ss-btn-outline,
+.main-content .ss-card .ss-actions a.ss-btn-outline {
+  color: var(--home1-maroon) !important;
+  background: transparent !important;
+  border-color: rgba(118,35,51,.42) !important;
+}
+
+/* Booking process */
+.main-content .ss-process-item {
+  height: 100%;
+  padding: 1.7rem 1.45rem;
+  border: 1px solid var(--home1-line);
+  border-bottom: 3px solid var(--home1-gold);
+  border-radius: 10px;
+  background: var(--home1-paper);
+  box-shadow: 0 8px 22px rgba(66,25,35,.045);
+}
+
+.main-content .ss-process-number {
+  margin-bottom: .8rem;
+  color: var(--home1-gold);
+  font-size: 2.8rem;
+}
+
+.main-content .ss-process-item h3,
+.main-content .ss-benefit h3,
+.main-content .ss-faq h3 {
+  color: var(--home1-maroon);
+  font-size: 1.5rem;
+}
+
+/* Priest profile cards — sample labels remain visible */
+.main-content .ss-priest-card {
+  position: relative;
+  padding: 2rem 1.5rem 1.6rem;
+  border: 1px solid var(--home1-line);
+  border-radius: 12px;
+  background: var(--home1-paper);
+  box-shadow: 0 9px 28px rgba(66,25,35,.055);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.main-content .ss-priest-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(66,25,35,.1);
+}
+
+.main-content .ss-priest-photo {
+  width: 138px;
+  height: 138px;
+  margin-bottom: 1rem;
+  border: 4px solid #f3e5c9;
+  outline: 1px solid var(--home1-gold);
+}
+
+.main-content .ss-priest-card .ss-label {
+  margin-bottom: .85rem;
+}
+
+.main-content .ss-priest-card h3 {
+  color: var(--home1-maroon);
+  font-size: 1.6rem;
+}
+
+.main-content .ss-priest-card p {
+  margin-bottom: 1.2rem;
+  color: var(--home1-muted);
+  line-height: 1.8;
+}
+
+/* Why choose */
+.main-content .ss-benefit {
+  height: 100%;
+  padding: 1.8rem;
+  border: 1px solid var(--home1-line);
+  border-left: 4px solid var(--home1-gold);
+  border-radius: 10px;
+  background: var(--home1-paper);
+  box-shadow: 0 8px 22px rgba(66,25,35,.04);
+}
+
+.main-content .ss-benefit-icon {
+  display: inline-flex;
+  width: 46px;
+  height: 46px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  color: var(--home1-maroon);
+  background: #f5ead5;
+  font-size: 1.35rem;
+}
+
+/* Testimonials — sample/demo wording remains intact */
+.main-content .ss-testimonial {
+  position: relative;
+  padding: 2rem 1.7rem 1.5rem;
+  border: 1px solid var(--home1-line);
+  border-radius: 12px;
+  background: var(--home1-paper);
+  box-shadow: 0 9px 28px rgba(66,25,35,.05);
+}
+
+.main-content .ss-testimonial::before {
+  content: "“";
+  display: block;
+  height: 2.3rem;
+  color: var(--home1-gold);
+  font-family: Georgia, serif;
+  font-size: 4rem;
+  line-height: 1;
+}
+
+.main-content .ss-testimonial blockquote {
+  color: #51433d;
+  font-size: 1.3rem;
+  line-height: 1.65;
+}
+
+.main-content .ss-devotee-profile {
+  border-top: 1px solid var(--home1-line);
+}
+
+.main-content .ss-devotee-photo {
+  width: 54px;
+  height: 54px;
+  border: 2px solid var(--home1-gold);
+}
+
+.main-content .ss-devotee-info strong {
+  color: var(--home1-maroon);
+}
+
+/* FAQ and preparation guide */
+.main-content .ss-faq {
+  height: 100%;
+  padding: 1.5rem;
+  border: 1px solid var(--home1-line);
+  border-top: 3px solid var(--home1-gold);
+  border-radius: 9px;
+  background: var(--home1-paper);
+}
+
+.main-content .ss-planning {
+  gap: clamp(2rem, 5vw, 4rem);
+}
+
+.main-content .ss-planning-image {
+  height: 470px;
+  border: 7px solid #fffdf8;
+  border-radius: 12px;
+  box-shadow: 0 18px 42px rgba(66,25,35,.12);
+}
+
+.main-content .ss-planning-list li {
+  border-bottom-color: var(--home1-line);
+}
+
+.main-content .ss-planning-list strong {
+  color: var(--home1-maroon);
+}
+
+.main-content .ss-booking-banner {
+  padding: clamp(1.6rem, 4vw, 3rem);
+  border: 1px solid var(--home1-gold);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 95% 0%, rgba(198,154,74,.2), transparent 35%),
+    var(--home1-maroon-deep);
+  box-shadow: 0 18px 45px rgba(66,25,35,.14);
+}
+
+.main-content .ss-booking-banner h2 {
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+}
+
+.main-content .ss-booking-image {
+  height: 290px;
+  border: 4px solid rgba(198,154,74,.65);
+  border-radius: 10px;
+}
+
+/* Dark theme: main content only */
+[data-theme="dark"] .main-content {
+  --home1-cream: #21191a;
+  --home1-paper: #302526;
+  --home1-ink: #f5ead8;
+  --home1-muted: #d6c8bb;
+  --home1-line: #594344;
+  color: var(--home1-ink);
+  background: #21191a;
+}
+
+[data-theme="dark"] .main-content .ss-hero {
+  background:
+    radial-gradient(circle at 8% 12%, rgba(198,154,74,.1), transparent 30%),
+    linear-gradient(135deg, #302526 0%, #21191a 100%);
+}
+
+[data-theme="dark"] .main-content .ss-hero h1,
+[data-theme="dark"] .main-content .ss-section-heading h2,
+[data-theme="dark"] .main-content .ss-planning h2 {
+  color: #f1d9a8;
+}
+
+[data-theme="dark"] .main-content .ss-hero p,
+[data-theme="dark"] .main-content .ss-section-heading p,
+[data-theme="dark"] .main-content .ss-card p,
+[data-theme="dark"] .main-content .ss-process-item p,
+[data-theme="dark"] .main-content .ss-priest-card p,
+[data-theme="dark"] .main-content .ss-benefit p,
+[data-theme="dark"] .main-content .ss-faq p {
+  color: var(--home1-muted);
+}
+
+[data-theme="dark"] .main-content .ss-section-alt {
+  background: #292122;
+}
+
+[data-theme="dark"] .main-content .ss-card,
+[data-theme="dark"] .main-content .ss-process-item,
+[data-theme="dark"] .main-content .ss-priest-card,
+[data-theme="dark"] .main-content .ss-benefit,
+[data-theme="dark"] .main-content .ss-testimonial,
+[data-theme="dark"] .main-content .ss-faq {
+  background: var(--home1-paper);
+  border-color: var(--home1-line);
+}
+
+[data-theme="dark"] .main-content .ss-card h3,
+[data-theme="dark"] .main-content .ss-process-item h3,
+[data-theme="dark"] .main-content .ss-priest-card h3,
+[data-theme="dark"] .main-content .ss-benefit h3,
+[data-theme="dark"] .main-content .ss-faq h3,
+[data-theme="dark"] .main-content .ss-devotee-info strong,
+[data-theme="dark"] .main-content .ss-planning-list strong {
+  color: #f1d9a8;
+}
+
+[data-theme="dark"] .main-content .ss-testimonial blockquote {
+  color: #eadfd3;
+}
+
+[data-theme="dark"] .main-content .ss-devotee-info span {
+  color: #d6c8bb;
+}
+
+[data-theme="dark"] .main-content .ss-planning-image {
+  border-color: #594344;
+}
+
+[data-theme="dark"] .main-content .ss-planning-list li {
+  border-bottom-color: #594344;
+}
+
+[data-theme="dark"] .main-content .ss-btn-primary {
+  color: #281b1b;
+  background: #c69a4a;
+  border-color: #c69a4a;
+}
+
+[data-theme="dark"] .main-content .ss-btn-primary:hover,
+[data-theme="dark"] .main-content .ss-btn-primary:focus-visible {
+  color: #21191a;
+  background: #ead5a7;
+}
+
+[data-theme="dark"] .main-content .ss-btn-outline {
+  color: #f1d9a8;
+  border-color: #c69a4a;
+}
+
+[data-theme="dark"] .main-content .ss-card .ss-btn-primary,
+[data-theme="dark"] .main-content .ss-card .ss-actions a.ss-btn-primary {
+  color: #281b1b !important;
+  background: #c69a4a !important;
+  border-color: #c69a4a !important;
+}
+
+[data-theme="dark"] .main-content .ss-card .ss-btn-outline,
+[data-theme="dark"] .main-content .ss-card .ss-actions a.ss-btn-outline {
+  color: #f1d9a8 !important;
+  background: transparent !important;
+  border-color: #c69a4a !important;
+}
+
+/* Responsive behavior */
+@media (max-width: 900px) {
+  .main-content .ss-hero-grid,
+  .main-content .ss-planning,
+  .main-content .ss-booking-banner {
+    grid-template-columns: 1fr;
+  }
+
+  .main-content .ss-hero-grid {
+    gap: 2.4rem;
+  }
+
+  .main-content .ss-hero-grid > div:first-child {
+    max-width: 760px;
+  }
+
+  .main-content .ss-hero-image {
+    width: min(100%, 620px);
+    height: 390px;
+    margin-inline: auto;
+  }
+
+  .main-content .ss-grid,
+  .main-content .ss-benefits {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .main-content .ss-process {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .main-content .ss-planning-image {
+    height: 380px;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-content .ss-section {
+    padding: 3.25rem 0;
+  }
+
+  .main-content .ss-hero {
+    padding: 3.4rem 0;
+  }
+
+  .main-content .ss-hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.8rem;
+  }
+
+  .main-content .ss-hero h1 {
+    font-size: clamp(2.45rem, 12vw, 3.35rem);
+  }
+
+  .main-content .ss-hero-image {
+    height: 320px;
+    border-radius: 130px 130px 12px 12px;
+  }
+
+  .main-content .ss-grid,
+  .main-content .ss-benefits,
+  .main-content .ss-process,
+  .main-content .ss-faq-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .main-content .ss-card-image {
+    height: 225px;
+  }
+
+  .main-content .ss-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .main-content .ss-actions .ss-btn {
+    width: 100%;
+  }
+
+  .main-content .ss-booking-banner {
+    padding: 1.35rem;
+  }
+
+  .main-content .ss-booking-image,
+  .main-content .ss-planning-image {
+    height: 280px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main-content .ss-card,
+  .main-content .ss-card-image,
+  .main-content .ss-priest-card,
+  .main-content .ss-btn {
+    transition: none !important;
+  }
+}
+
+
+/* Additional Home 1 hero details */
+
+.main-content .ss-hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.main-content .ss-hero-note {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 1.5rem;
+  color: #76634e;
+  font-size: .84rem;
+  font-weight: 500;
+}
+
+.main-content .ss-hero-note span {
+  color: #c69a4a;
+  font-size: 1.15rem;
+}
+
+.main-content .ss-hero-visual {
+  position: relative;
+}
+
+.main-content .ss-hero-visual::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 72%;
+  height: 75%;
+  right: -15px;
+  bottom: -15px;
+  border: 1px solid #c69a4a;
+  border-radius: 150px 150px 12px 12px;
+}
+
+[data-theme="dark"] .main-content .ss-hero-note {
+  color: #d6c8bb;
+}
+
+@media (max-width: 600px) {
+  .main-content .ss-hero-note {
+    justify-content: center;
+    text-align: center;
+  }
+}
